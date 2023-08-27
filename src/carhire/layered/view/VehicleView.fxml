@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="vehicleViewContext" prefHeight="823.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.VehicleViewController">
+   <children>
+      <Label layoutX="448.0" layoutY="5.0" text="CarHire" textFill="WHITE">
+         <font>
+            <Font name="Apple Chancery" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblVehicle" layoutX="77.0" layoutY="466.0" prefHeight="296.0" prefWidth="856.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Label layoutX="96.0" layoutY="108.0" text="Vehicle Number" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField editable="false" layoutX="255.0" layoutY="108.0" prefHeight="26.0" prefWidth="278.0" />
+      <Label layoutX="96.0" layoutY="147.0" text="Vehicle Brand" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField layoutX="255.0" layoutY="147.0" prefHeight="26.0" prefWidth="278.0" />
+      <Label layoutX="96.0" layoutY="185.0" text="Vehicle Model" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField layoutX="255.0" layoutY="185.0" prefHeight="26.0" prefWidth="278.0" />
+      <Label layoutX="96.0" layoutY="221.0" text="Vehicle Type" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="255.0" layoutY="221.0" prefHeight="26.0" prefWidth="278.0" />
+      <Label layoutX="96.0" layoutY="258.0" text="Transmission" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="255.0" layoutY="258.0" prefHeight="26.0" prefWidth="278.0" />
+      <Label layoutX="96.0" layoutY="297.0" text="No of Seats" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Spinner layoutX="255.0" layoutY="297.0" prefHeight="26.0" prefWidth="278.0" />
+      <Button layoutX="277.0" layoutY="343.0" mnemonicParsing="false" onAction="#UpdateVehicleOnAction" style="-fx-background-color: #2980b9;" text="Update Vehicle" textFill="WHITE" />
+      <Button layoutX="409.0" layoutY="343.0" mnemonicParsing="false" onAction="#DeleteVehicleOnAction" style="-fx-background-color: #95a5a6;" text="Delete Vehicle" textFill="WHITE" />
+      <Button layoutX="828.0" layoutY="20.0" mnemonicParsing="false" onAction="#BackToHomeOnAction" style="-fx-background-color: #c0392b;" text="Back To Home" textFill="WHITE" />
+   </children>
+</AnchorPane>

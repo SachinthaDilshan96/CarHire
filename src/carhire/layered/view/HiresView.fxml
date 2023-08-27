@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="hiresViewContext" prefHeight="823.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.HiresViewController">
+   <children>
+      <Label layoutX="476.0" layoutY="25.0" text="CarHire" textFill="WHITE">
+         <font>
+            <Font name="Apple Chancery" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="131.0" layoutY="129.0" text="Enter Hire ID" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField id="txtHireId" layoutX="268.0" layoutY="130.0" prefHeight="26.0" prefWidth="294.0" />
+      <Button layoutX="614.0" layoutY="130.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #2c3e50;" text="Search" textFill="WHITE" />
+      <Button layoutX="861.0" layoutY="40.0" mnemonicParsing="false" onAction="#BackToHomeOnAction" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #c0392b;" text="Back To Home" textFill="WHITE" />
+      <Label layoutX="115.0" layoutY="215.0" text="Customer Name" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCustomerName" editable="false" layoutX="268.0" layoutY="215.0" prefHeight="26.0" prefWidth="294.0" />
+      <Label layoutX="115.0" layoutY="254.0" text="From" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFrom" editable="false" layoutX="268.0" layoutY="254.0" prefHeight="26.0" prefWidth="294.0" />
+      <Label layoutX="115.0" layoutY="293.0" text="To" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTo" editable="false" layoutX="268.0" layoutY="293.0" prefHeight="26.0" prefWidth="294.0" />
+      <Label layoutX="115.0" layoutY="331.0" text="Vehicle Number" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtVehicleNumber" editable="false" layoutX="268.0" layoutY="331.0" prefHeight="26.0" prefWidth="294.0" />
+      <Label layoutX="115.0" layoutY="370.0" text="Hire Placed By" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtHirePlacedBy" editable="false" layoutX="268.0" layoutY="370.0" prefHeight="26.0" prefWidth="294.0" />
+      <Label layoutX="115.0" layoutY="407.0" text="Charge" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCharge" editable="false" layoutX="268.0" layoutY="407.0" prefHeight="26.0" prefWidth="294.0" />
+      <TableView fx:id="tblHires" layoutX="108.0" layoutY="495.0" prefHeight="285.0" prefWidth="837.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Label layoutX="115.0" layoutY="444.0" text="Status" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtStatus" editable="false" layoutX="268.0" layoutY="444.0" prefHeight="26.0" prefWidth="294.0" />
+   </children>
+</AnchorPane>

@@ -8,18 +8,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomeViewController {
-    public AnchorPane homeContext;
+public class CustomerViewController {
+    public AnchorPane customerViewContext;
 
     private void setUi(String url) throws IOException {
-        Stage stage = (Stage) homeContext.getScene().getWindow();
+        Stage stage = (Stage) customerViewContext.getScene().getWindow();
         stage.setScene(
                 new Scene(FXMLLoader.load(getClass().getResource("../view/"+url+".fxml")))
         );
         stage.centerOnScreen();
     }
 
-    public void LoginOnAction(ActionEvent actionEvent) throws IOException {
+    public void BackToHomeOnAction(ActionEvent actionEvent) throws IOException {
         setUi("DashboardView");
+    }
+
+    public void SearchCustomerOnAction(ActionEvent actionEvent) {
+    }
+
+    public void UpdateCustomerOnAction(ActionEvent actionEvent) {
     }
 }

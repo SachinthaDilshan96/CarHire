@@ -8,18 +8,23 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomeViewController {
-    public AnchorPane homeContext;
+public class VehicleViewController {
+    public AnchorPane vehicleViewContext;
 
     private void setUi(String url) throws IOException {
-        Stage stage = (Stage) homeContext.getScene().getWindow();
+        Stage stage = (Stage) vehicleViewContext.getScene().getWindow();
         stage.setScene(
                 new Scene(FXMLLoader.load(getClass().getResource("../view/"+url+".fxml")))
         );
         stage.centerOnScreen();
     }
 
-    public void LoginOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("DashboardView");
+    public void UpdateVehicleOnAction(ActionEvent actionEvent) {
+    }
+
+    public void DeleteVehicleOnAction(ActionEvent actionEvent) {
+    }
+
+    public void BackToHomeOnAction(ActionEvent actionEvent) {
     }
 }
