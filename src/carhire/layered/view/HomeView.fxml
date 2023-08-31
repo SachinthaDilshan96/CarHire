@@ -20,13 +20,13 @@
             </Label>
          </children>
       </Pane>
-      <TextField layoutX="70.0" layoutY="340.0" prefHeight="46.0" prefWidth="272.0" promptText="Email" />
+      <TextField fx:id="txtEmail" layoutX="70.0" layoutY="340.0" prefHeight="46.0" prefWidth="272.0" promptText="Email" />
       <Label layoutX="159.0" layoutY="264.0" text="Login" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="70.0" layoutY="417.0" prefHeight="46.0" prefWidth="272.0" promptText="Password" />
+      <TextField fx:id="txtPassword" layoutX="70.0" layoutY="417.0" prefHeight="46.0" prefWidth="272.0" promptText="Password" />
       <Label layoutX="70.0" layoutY="314.0" text="Enter your email" textFill="WHITE" />
       <Label layoutX="70.0" layoutY="394.0" text="Enter your password" textFill="WHITE" />
       <ImageView fitHeight="693.0" fitWidth="541.0" layoutX="422.0" layoutY="231.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
