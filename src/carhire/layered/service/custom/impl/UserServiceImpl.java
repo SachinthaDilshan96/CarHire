@@ -16,16 +16,27 @@ public class UserServiceImpl implements UserService {
     public UserDto getUser(String id) throws Exception {
         UserEntity userEntity = userDao.get(id,session);
         if (userEntity==null){
-            System.out.println("Yes"+userEntity);
+            return null;
         }else{
-            System.out.println("No");
+            return new UserDto(
+                    userEntity.getUserId(),
+                    userEntity.getFirstName(),
+                    userEntity.getLastName(),
+                    userEntity.getEmail(),
+                    userEntity.getPassword(),
+                    userEntity.getLevel());
         }
-        return new UserDto();
     }
 
     @Override
     public int addUser(UserDto userDto) throws Exception {
-        UserEntity userEntity = new UserEntity(0,userDto.getFirstName(),userDto.getLastName(),userDto.getEmail(),userDto.getPassword());
+        UserEntity userEntity = new UserEntity(
+                0,
+                userDto.getFirstName(),
+                userDto.getLastName(),
+                userDto.getEmail(),
+                userDto.getPassword(),
+                userDto.getLevel());
         int i = userDao.add(userEntity,session);
         return i;
     }

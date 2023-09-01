@@ -12,7 +12,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public UserEntity get(String s, Session session) throws Exception {
-        return CrudUtil.getUser("FROM UserEntity",s,session);
+        return CrudUtil.getUser("FROM UserEntity where email=:email",s,session);
     }
 
     @Override

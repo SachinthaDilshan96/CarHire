@@ -1,18 +1,17 @@
 package carhire.layered.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class UserDto {
         private int id;
         private String firstName;
         private String lastName;
         private String email;
         private String password;
+        private String level;
 }

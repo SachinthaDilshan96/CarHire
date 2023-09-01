@@ -9,7 +9,7 @@ public class CrudUtil {
 
     public static UserEntity getUser(String hql, String email, Session session){
         Query query = session.createQuery(hql);
-        //query.setParameter("email",email);
+        query.setParameter("email",email);
         return (UserEntity)query.uniqueResult();
     }
 

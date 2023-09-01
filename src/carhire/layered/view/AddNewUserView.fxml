@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addNewUserContext" prefHeight="823.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.AddNewUserViewController">
+<AnchorPane fx:id="addNewUserContext" prefHeight="823.0" prefWidth="1040.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.AddNewUserViewController">
    <children>
       <Label layoutX="466.0" layoutY="28.0" text="CarHire" textFill="WHITE">
          <font>
@@ -18,42 +20,42 @@
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Label layoutX="335.0" layoutY="245.0" text="Email" textFill="WHITE">
+      <Label layoutX="315.0" layoutY="245.0" text="Email" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEmail" layoutX="445.0" layoutY="242.0" promptText="Email">
+      <TextField fx:id="txtEmail" layoutX="425.0" layoutY="242.0" promptText="Email" style="-fx-border-color: #95a5a6;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="335.0" layoutY="295.0" text="First Name" textFill="WHITE">
+      <Label layoutX="315.0" layoutY="295.0" text="First Name" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFirstName" layoutX="445.0" layoutY="292.0" promptText="First Name">
+      <TextField fx:id="txtFirstName" layoutX="425.0" layoutY="292.0" promptText="First Name" style="-fx-border-color: #95a5a6;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="335.0" layoutY="389.0" text="Mobile" textFill="WHITE">
+      <Label layoutX="315.0" layoutY="389.0" text="Mobile" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="txtMobile" layoutX="445.0" layoutY="386.0" promptText="Mobile">
+      <TextField fx:id="txtMobile" layoutX="425.0" layoutY="386.0" promptText="Mobile" style="-fx-border-color: #95a5a6;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="335.0" layoutY="437.0" text="Password" textFill="WHITE">
+      <Label layoutX="315.0" layoutY="437.0" text="Password" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <Button layoutX="560.0" layoutY="481.0" mnemonicParsing="false" onAction="#SaveUserOnAction" style="-fx-background-color: #d35400;" text="Save User" textFill="WHITE">
+      <Button fx:id="btnSaveUser" layoutX="540.0" layoutY="529.0" mnemonicParsing="false" onAction="#SaveUserOnAction" style="-fx-background-color: #d35400;" text="Save User" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -63,20 +65,51 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Label layoutX="335.0" layoutY="344.0" text="Last Name" textFill="WHITE">
+      <Label layoutX="315.0" layoutY="344.0" text="Last Name" textFill="WHITE">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="txtLastName" layoutX="445.0" layoutY="341.0" promptText="Last Name">
+      <TextField fx:id="txtLastName" layoutX="425.0" layoutY="341.0" promptText="Last Name" style="-fx-border-color: #95a5a6;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txtPassword" layoutX="445.0" layoutY="433.0" prefHeight="26.0" prefWidth="221.0" promptText="Password">
+      <PasswordField fx:id="txtPassword" layoutX="425.0" layoutY="433.0" prefHeight="26.0" prefWidth="221.0" promptText="Password" style="-fx-border-color: #95a5a6;">
          <font>
             <Font size="18.0" />
          </font>
       </PasswordField>
+      <RadioButton fx:id="rbtnOrdinary" layoutX="425.0" layoutY="492.0" mnemonicParsing="false" selected="true" text="Ordinary" toggleGroup="$level">
+         <toggleGroup>
+            <ToggleGroup fx:id="level" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbtnAdmin" layoutX="550.0" layoutY="492.0" mnemonicParsing="false" text="Admin" toggleGroup="$level" />
+      <Label fx:id="lblEmail" layoutX="669.0" layoutY="251.0" textFill="#c0392b">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFirstName" layoutX="669.0" layoutY="299.0" textFill="#c0392b">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLastName" layoutX="671.0" layoutY="348.0" textFill="#c0392b">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMobile" layoutX="671.0" layoutY="393.0" textFill="#c0392b">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPassword" layoutX="671.0" layoutY="440.0" textFill="#c0392b">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
