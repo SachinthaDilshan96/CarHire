@@ -45,8 +45,8 @@ public class AddNewUserViewController {
         if (validateEmail() & validateFirstName() & validateLastName() & validateMobile()){
             try {
                   int res = userService.addUser(new UserDto(
-                        0,txtFirstName.getText(),
-                        txtLastName.getText(),
+                        0,txtFirstName.getText().substring(0,1).toUpperCase()+txtFirstName.getText().substring(1).toLowerCase(),
+                        txtLastName.getText().substring(0,1).toUpperCase()+txtLastName.getText().substring(1).toLowerCase(),
                         txtEmail.getText(),
                         PasswordManager.encryptPassword(txtPassword.getText()),
                         getUserLevel()));

@@ -33,7 +33,7 @@ public class DashboardViewController {
         showDate();
         lblUserName.setText(UserHolder.getUserDto().getFirstName()+" "+UserHolder.getUserDto().getLastName());
         btnLogOut.setText("Logout\n("+UserHolder.getUserDto().getFirstName()+")");
-        if (UserHolder.getUserDto().getLevel().equals("admin")){
+        if (UserHolder.getUserDto().getLevel().equalsIgnoreCase("Admin")){
             btnAddNewUser.setDisable(false);
             btnUsers.setDisable(false);
         }else{
