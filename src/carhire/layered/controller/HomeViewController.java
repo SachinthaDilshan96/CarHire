@@ -32,7 +32,7 @@ public class HomeViewController {
 
     public void LoginOnAction(ActionEvent actionEvent) throws IOException {
         try{
-           UserDto userDto = userService.getUser(txtEmail.getText());
+           UserDto userDto = userService.getUser(txtEmail.getText(),false);
            if (userDto!=null){
                if (PasswordManager.validatePassword(txtPassword.getText(),userDto.getPassword())){
                    UserHolder.setUserDto(userDto);

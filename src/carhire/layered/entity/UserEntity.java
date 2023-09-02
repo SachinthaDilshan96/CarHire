@@ -26,5 +26,7 @@ public class UserEntity {
     private String password;
     @Column(name = "level")
     private String level;
+    @Column(name = "status")
+    private String status;
 
 }

@@ -49,7 +49,8 @@ public class AddNewUserViewController {
                         txtLastName.getText().substring(0,1).toUpperCase()+txtLastName.getText().substring(1).toLowerCase(),
                         txtEmail.getText(),
                         PasswordManager.encryptPassword(txtPassword.getText()),
-                        getUserLevel()));
+                        getUserLevel(),
+                          "in"));
 
                 if (res>=0){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION,"User Saved Successfully");
