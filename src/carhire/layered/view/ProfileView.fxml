@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="profileViewContext" prefHeight="823.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.ProfileViewController">
+   <children>
+      <Label layoutX="469.0" layoutY="19.0" text="CarHire" textFill="WHITE">
+         <font>
+            <Font name="Apple Chancery" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="833.0" layoutY="30.0" mnemonicParsing="false" onAction="#BackToHomeOnAction" style="-fx-background-color: #34495e;" text="Back to Home" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="140.0" layoutY="122.0" text="Welcome , " textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblName" layoutX="248.0" layoutY="122.0" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="288.0" layoutY="237.0" text="First Name" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFirstName" layoutX="414.0" layoutY="238.0" prefHeight="29.0" prefWidth="221.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="288.0" layoutY="278.0" text="Last Name" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtLastName" layoutX="414.0" layoutY="279.0" prefHeight="29.0" prefWidth="221.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="288.0" layoutY="320.0" text="Email" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" editable="false" layoutX="414.0" layoutY="321.0" prefHeight="29.0" prefWidth="221.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="288.0" layoutY="360.0" text="Password" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="txtPassword" layoutX="414.0" layoutY="362.0" prefHeight="26.0" prefWidth="221.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="515.0" layoutY="417.0" mnemonicParsing="false" onAction="#UpdateProfileOnAction" style="-fx-background-color: #c0392b;" text="Update Profile" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="lblFirstName" layoutX="655.0" layoutY="208.0" textFill="#d02727" />
+      <Label fx:id="lblLastName" layoutX="655.0" layoutY="250.0" textFill="#d02727" />
+      <Label layoutX="288.0" layoutY="197.0" text="User ID" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUserID" layoutX="414.0" layoutY="198.0" prefHeight="29.0" prefWidth="221.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="655.0" layoutY="366.0" text="Enter your new Password" textFill="WHITE" />
+   </children>
+</AnchorPane>
