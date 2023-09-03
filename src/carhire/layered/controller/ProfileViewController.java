@@ -96,8 +96,7 @@ public class ProfileViewController {
     private void setUi(String url) throws IOException {
         Stage stage = (Stage) profileViewContext.getScene().getWindow();
         stage.setScene(
-                new Scene(FXMLLoader.load(getClass().getResource("../view/"+url+".fxml")))
-        );
+                new Scene(FXMLLoader.load(getClass().getResource("../view/"+url+".fxml"))));
         stage.centerOnScreen();
     }
 

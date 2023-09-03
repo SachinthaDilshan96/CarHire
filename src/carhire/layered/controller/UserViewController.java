@@ -3,6 +3,9 @@ package carhire.layered.controller;
 import carhire.layered.dto.UserDto;
 import carhire.layered.service.ServiceFactory;
 import carhire.layered.service.custom.UserService;
+import carhire.layered.view.tm.UserTm;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,12 +41,43 @@ public class UserViewController {
     private UserService userService = (UserService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.USER);
 
     public void initialize(){
+        colID.setCellValueFactory(new PropertyValueFactory<UserTm,String>("id"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<UserTm,String>("firstName"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<UserTm,String>("lastName"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<UserTm,String>("email"));
+        colLevel.setCellValueFactory(new PropertyValueFactory<UserTm,String>("level"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<UserTm,String>("status"));
         loadAllUsers();
+        tblUsers.getSelectionModel().selectedItemProperty()
+                .addListener((observable,oldValue,newValue)->{
+                    if (newValue!=null){
+                        setData((UserTm) newValue);
+                    }
+                });
     }
     public void BackToHomeOnAction(ActionEvent actionEvent) throws IOException {
         setUi("DashboardView");
     }
 
+    private void setData(UserTm userTm){
+        txtUserID.setText(Integer.toString(userTm.getId()));
+        txtFirstName.setText(userTm.getFirstName());
+        txtLastName.setText(userTm.getLastName());
+        txtEmail.setText(userTm.getEmail());
+        if (userTm.getLevel().equalsIgnoreCase("Admin")){
+            rbtnAdmin.setSelected(true);
+        }else{
+            rbtnOrdinary.setSelected(true);
+        }
+        if(userTm.getStatus().equalsIgnoreCase("in")){
+            lblStatus.setText("A Current User");
+            btnDelete.setText("Delete");
+        }else{
+            lblStatus.setText("A Former User");
+            btnDelete.setText("Make In");
+        }
+
+    }
 
     private void setUi(String url) throws IOException {
         Stage stage = (Stage) userViewContext.getScene().getWindow();
@@ -83,13 +117,24 @@ public class UserViewController {
     }
 
     public void loadAllUsers(){
+        ObservableList<UserTm> observableList = FXCollections.observableArrayList();
        try {
            ArrayList<UserDto> allusers = userService.getAllUsers();
-           allusers.forEach(System.out::println);
+           for (UserDto user:allusers) {
+               observableList.add(new UserTm(
+                       user.getId(),
+                       user.getFirstName(),
+                       user.getLastName(),
+                       user.getEmail(),
+                       user.getLevel(),
+                       user.getStatus()));
+           }
+
        }catch (Exception e){
            Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
            alert.show();
        }
+        tblUsers.setItems(observableList);
     }
 
     public void UpdateUserOnAction(ActionEvent actionEvent) {
@@ -119,6 +164,7 @@ public class UserViewController {
                 if (userService.update(userDto)>=0){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION,
                             (status==null)?"User updated successfully":"User Made In successfully");
+                    loadAllUsers();
                     alert.show();
                     clearFields();
                     lblStatus.setText("");
@@ -126,6 +172,7 @@ public class UserViewController {
                 }else {
                     Alert alert = new Alert(Alert.AlertType.ERROR,"User couldn't be updated. Please try again");
                     alert.show();
+                    loadAllUsers();
                 }
             }catch (Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
@@ -144,6 +191,7 @@ public class UserViewController {
             try {
                 int i = userService.deleteUser(Integer.parseInt(txtUserID.getText()));
                 if (i>=0){
+                    loadAllUsers();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION,"User Deleted Successfully");
                     alert.show();
                     clearFields();
@@ -151,6 +199,7 @@ public class UserViewController {
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR,"User Deletion failed. Please try again");
                     alert.show();
+                    loadAllUsers();
                 }
             }catch (Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());

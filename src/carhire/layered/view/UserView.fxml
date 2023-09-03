@@ -19,11 +19,14 @@
          </font>
       </Label>
       <TableView fx:id="tblUsers" layoutX="82.0" layoutY="475.0" prefHeight="283.0" prefWidth="768.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
+         <columns>
+            <TableColumn fx:id="colID" prefWidth="88.0" text="ID" />
+            <TableColumn fx:id="colFirstName" prefWidth="152.0" text="FirstName" />
+            <TableColumn fx:id="colLastName" prefWidth="139.0" text="LastName" />
+            <TableColumn fx:id="colEmail" prefWidth="193.0" text="Email" />
+            <TableColumn fx:id="colLevel" prefWidth="118.0" text="Level" />
+            <TableColumn fx:id="colStatus" prefWidth="72.0" text="Status" />
+         </columns></TableView>
       <Label layoutX="128.0" layoutY="146.0" text="Enter user email" textFill="WHITE">
          <font>
             <Font size="22.0" />
