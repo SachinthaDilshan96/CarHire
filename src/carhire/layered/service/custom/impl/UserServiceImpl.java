@@ -9,6 +9,7 @@ import carhire.layered.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserServiceImpl implements UserService {
@@ -62,17 +63,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ArrayList<UserDto> getAllUsers() throws Exception {
-        ArrayList<UserEntity> userEntities = userDao.getAll(session);
+        List<Object> userEntities = userDao.getAll(session);
         ArrayList<UserDto> users = new ArrayList<>();
-        for (UserEntity u:userEntities) {
+        for (Object u:userEntities) {
+            UserEntity userEntity = (UserEntity)u;
             users.add(new UserDto(
-                    u.getUserId(),
-                    u.getFirstName(),
-                    u.getLastName(),
-                    u.getEmail(),
-                    u.getPassword(),
-                    u.getLevel(),
-                    u.getStatus()
+                    userEntity.getUserId(),
+                    userEntity.getFirstName(),
+                    userEntity.getLastName(),
+                    userEntity.getEmail(),
+                    userEntity.getPassword(),
+                    userEntity.getLevel(),
+                    userEntity.getStatus()
             ));
         }
         return users;

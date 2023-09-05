@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="vehicleViewContext" prefHeight="823.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.VehicleViewController">
+<AnchorPane fx:id="vehicleViewContext" prefHeight="639.0" prefWidth="722.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.VehicleViewController">
    <children>
       <Label layoutX="448.0" layoutY="5.0" text="CarHire" textFill="WHITE">
          <font>

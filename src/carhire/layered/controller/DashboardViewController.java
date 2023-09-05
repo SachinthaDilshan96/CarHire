@@ -1,5 +1,6 @@
 package carhire.layered.controller;
 
+import carhire.layered.dto.UserDto;
 import carhire.layered.util.UserHolder;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -92,7 +93,7 @@ public class DashboardViewController {
     }
 
     public void VehiclesOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("VehicleView");
+        setUi("VehicleSectionView");
     }
 
     public void AvailableVehiclesOnAction(ActionEvent actionEvent) throws IOException {

@@ -2,3 +2,7 @@
 .backgroundColor{
     -fx-background-color: linear-gradient(to right bottom,#16a085,#3498db);
 }
+
+.backgroundColorVehiclePanel{
+    -fx-background-color: linear-gradient(to right bottom, #badce3,#3498db);
+}
