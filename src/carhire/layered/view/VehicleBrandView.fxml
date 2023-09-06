@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="carhire.layered.controller.VehicleBrandViewController"
-            prefHeight="638.0" prefWidth="720.0">
-
+<AnchorPane fx:id="vehicleBrandContext" prefHeight="638.0" prefWidth="721.0" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.VehicleBrandViewController">
+    <styleClass>
+        <String fx:value="backgroundColor" />
+        <String fx:value="backgroundColorVehiclePanel" />
+    </styleClass>
+   <children>
+      <Label layoutX="316.0" layoutY="31.0" text="Vehicle Brand">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="153.0" layoutY="114.0" prefHeight="194.0" prefWidth="435.0">
+         <children>
+            <Label layoutX="11.0" layoutY="41.0" text="Vehicle Brand ID">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtVehicleBrandID" editable="false" layoutX="172.0" layoutY="34.0" promptText="Vehicle Brand ID">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <Label layoutX="13.0" layoutY="92.0" text="Vehicle Brand">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtVehicleBrand" layoutX="172.0" layoutY="85.0" promptText="Brand Category">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnAddNew" layoutX="256.0" layoutY="130.0" mnemonicParsing="false" onAction="#AddNewVehicleTypeOnAction" text="Add  New Vehicle Brand" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tblVehicleBrand" layoutX="216.0" layoutY="329.0" prefHeight="200.0" prefWidth="309.0">
+         <placeholder>
+            <Label text="No Vehicle Categories to show" />
+         </placeholder>
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="76.0" text="ID" />
+            <TableColumn fx:id="colBrand" prefWidth="232.0" text="Vehicle Brand" />
+         </columns>
+      </TableView>
+      <Button layoutX="588.0" layoutY="244.0" mnemonicParsing="false" onAction="#ClearFieldsOnAction" text="Clear Fields" />
+   </children>
 </AnchorPane>
