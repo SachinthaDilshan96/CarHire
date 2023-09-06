@@ -1,6 +1,7 @@
 package carhire.layered.dao;
 
 import carhire.layered.dao.custom.impl.UserDaoImpl;
+import carhire.layered.dao.custom.impl.VehicleCategoryDaoImpl;
 import carhire.layered.service.SuperService;
 
 public class DaoFactory {
@@ -16,12 +17,14 @@ public class DaoFactory {
         switch (daoType){
             case USER:
                 return new UserDaoImpl();
+            case VEHICLE_CATEGORY:
+                return new VehicleCategoryDaoImpl();
             default:
                 return null;
         }
     }
 
     public enum DaoTypes{
-        USER,
+        USER,VEHICLE_CATEGORY
     }
 }

@@ -1,6 +1,7 @@
 package carhire.layered.service;
 
 import carhire.layered.service.custom.impl.UserServiceImpl;
+import carhire.layered.service.custom.impl.VehicleCategoryServiceImpl;
 
 public class ServiceFactory {
     private static ServiceFactory serviceFactory;
@@ -17,12 +18,14 @@ public class ServiceFactory {
         switch (serviceType){
             case USER:
                 return new UserServiceImpl();
+            case VEHICLE_CATEGORY:
+                return new VehicleCategoryServiceImpl();
             default:
                 return null;
         }
     }
 
     public enum ServiceType{
-        USER,
+        USER,VEHICLE_CATEGORY
     }
 }

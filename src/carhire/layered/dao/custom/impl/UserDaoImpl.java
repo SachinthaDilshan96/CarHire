@@ -12,10 +12,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public UserEntity get(String email, Session session, boolean isAll) throws Exception {
         if (isAll){
-            //return (UserEntity) CrudUtil.getUser("FROM UserEntity where email=:email",email,session);
             return (UserEntity) CrudUtil.getUniqueResult("FROM UserEntity where email=?1",session,email);
         }else{
-           // return (UserEntity) CrudUtil.getUser("FROM UserEntity where email=:email and status='in'",email,session);
             return (UserEntity) CrudUtil.getUniqueResult("FROM UserEntity where email=?1 and status=?2",session,email,"in");
         }
     }

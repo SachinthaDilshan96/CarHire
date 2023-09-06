@@ -7,7 +7,8 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 
 public interface VehicleCategoryDao extends CrudDao<VehicleCategoryEntity,String, Session> {
-    int add(VehicleCategoryEntity vehicleCategoryEntity) throws Exception;
-    int update(VehicleCategoryEntity vehicleCategoryEntity) throws Exception;
-    ArrayList<VehicleCategoryEntity> getAll() throws Exception;
+    VehicleCategoryEntity get(String vehicleCategory, Session session) throws Exception;
+    int add(VehicleCategoryEntity vehicleCategoryEntity , Session session) throws Exception;
+    int update(VehicleCategoryEntity vehicleCategoryEntity , Session session) throws Exception;
+    ArrayList<VehicleCategoryEntity> getAll(Session session) throws Exception;
 }

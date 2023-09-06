@@ -22,7 +22,7 @@
             </Label>
          </children>
       </Pane>
-      <TextField fx:id="txtEmail" layoutX="70.0" layoutY="340.0" prefHeight="46.0" prefWidth="272.0" promptText="Email" />
+      <TextField fx:id="txtEmail" layoutX="70.0" layoutY="340.0" prefHeight="46.0" prefWidth="272.0" promptText="Email" text="a@gmail.com" />
       <Label layoutX="159.0" layoutY="264.0" text="Login" textFill="WHITE">
          <font>
             <Font size="24.0" />
@@ -43,6 +43,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <PasswordField fx:id="txtPassword" layoutX="70.0" layoutY="424.0" prefHeight="46.0" prefWidth="272.0" promptText="Password" />
+      <PasswordField fx:id="txtPassword" layoutX="70.0" layoutY="424.0" prefHeight="46.0" prefWidth="272.0" promptText="Password" text="123" />
    </children>
 </AnchorPane>
