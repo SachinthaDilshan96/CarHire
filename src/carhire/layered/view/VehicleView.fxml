@@ -42,18 +42,19 @@
             <ComboBox fx:id="txtVehicleType" layoutX="473.0" layoutY="97.0" prefHeight="26.0" prefWidth="204.0" promptText="Vehicle Type" />
             <ComboBox fx:id="txtTransmission" layoutX="473.0" layoutY="130.0" prefHeight="26.0" prefWidth="204.0" promptText="Transmission" />
             <Button fx:id="btnAddVehicle" layoutX="473.0" layoutY="287.0" mnemonicParsing="false" onAction="#addVehicleOnAction" text="Add Vehicle" />
-            <TableView layoutX="69.0" layoutY="346.0" prefHeight="241.0" prefWidth="608.0">
+            <TableView fx:id="tblVehicle" layoutX="6.0" layoutY="343.0" prefHeight="241.0" prefWidth="693.0">
                <placeholder>
                   <Label text="No Vehicles to show" />
                </placeholder>
               <columns>
-                <TableColumn prefWidth="51.0" text="ID" />
-                <TableColumn prefWidth="81.0" text="Number" />
-                  <TableColumn prefWidth="83.0" text="Brand" />
-                  <TableColumn prefWidth="109.0" text="Model" />
-                  <TableColumn prefWidth="92.0" text="Transmission" />
-                  <TableColumn prefWidth="100.0" text="Daily Rental" />
-                  <TableColumn prefWidth="91.0" text="Status" />
+                <TableColumn fx:id="colId" prefWidth="35.0" text="ID" />
+                <TableColumn fx:id="colNumber" prefWidth="81.0" text="Number" />
+                  <TableColumn fx:id="colBrand" prefWidth="99.0" text="Brand" />
+                  <TableColumn fx:id="colModel" prefWidth="109.0" text="Model" />
+                  <TableColumn fx:id="colTransmission" prefWidth="92.0" text="Transmission" />
+                  <TableColumn fx:id="colDailyRental" prefWidth="100.0" text="Daily Rental" />
+                  <TableColumn fx:id="colStatus" prefWidth="91.0" text="Status" />
+                  <TableColumn fx:id="colDelete" prefWidth="91.0" />
               </columns>
             </TableView>
             <Button layoutX="594.0" layoutY="287.0" mnemonicParsing="false" onAction="#clearFieldsOnAction" text="Clear Fields" />

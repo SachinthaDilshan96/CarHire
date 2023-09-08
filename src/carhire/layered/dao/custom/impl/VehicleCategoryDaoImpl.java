@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleCategoryDaoImpl implements VehicleCategoryDao {
-    @Override
-    public VehicleCategoryEntity get(String s, Session session, boolean a) throws Exception {
-        return null;
-    }
+
 
     @Override
     public VehicleCategoryEntity get(String vehicleCategory, Session session) throws Exception {
@@ -27,6 +24,11 @@ public class VehicleCategoryDaoImpl implements VehicleCategoryDao {
     public int update(VehicleCategoryEntity vehicleCategoryEntity , Session session) throws Exception {
         return CrudUtil.executeUpdate("UPDATE VehicleCategoryEntity set vehicleCategory=?1 where categoryID=?2",
                 session,vehicleCategoryEntity.getVehicleCategory(),vehicleCategoryEntity.getCategoryID());
+    }
+
+    @Override
+    public int delete(String s, Session session) throws Exception {
+        return 0;
     }
 
     @Override

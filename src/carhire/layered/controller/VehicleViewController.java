@@ -2,9 +2,12 @@ package carhire.layered.controller;
 
 import carhire.layered.dto.VehicleBrandDto;
 import carhire.layered.dto.VehicleCategoryDto;
+import carhire.layered.dto.VehicleDto;
 import carhire.layered.service.ServiceFactory;
 import carhire.layered.service.custom.VehicleBrandService;
 import carhire.layered.service.custom.VehicleCategoryService;
+import carhire.layered.service.custom.VehicleService;
+import carhire.layered.view.tm.VehicleTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -48,9 +52,19 @@ public class VehicleViewController {
     public Label lblBrand;
     public Label lblVehicleType;
     public Label lblTransmission;
+    public TableColumn colId;
+    public TableColumn colNumber;
+    public TableColumn colBrand;
+    public TableColumn colModel;
+    public TableColumn colTransmission;
+    public TableColumn colDailyRental;
+    public TableColumn colStatus;
+    public TableColumn colDelete;
+    public TableView tblVehicle;
 
-    VehicleBrandService vehicleBrandService = (VehicleBrandService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_BRAND);
-    VehicleCategoryService vehicleCategoryService = (VehicleCategoryService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_CATEGORY);
+    private VehicleBrandService vehicleBrandService = (VehicleBrandService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_BRAND);
+    private VehicleCategoryService vehicleCategoryService = (VehicleCategoryService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_CATEGORY);
+    private VehicleService vehicleService = (VehicleService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_SERVICE);
 
     public void initialize(){
         setVehicleBrands();
@@ -58,6 +72,27 @@ public class VehicleViewController {
         setTransmission();
         setNumberOfSeats();
         setModelYear();
+        loadAllVehicles();
+        colId.setCellValueFactory(new PropertyValueFactory<VehicleTm,Integer>("vehicleId"));
+        colNumber.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("vehicleNumber"));
+        colModel.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("model"));
+        colBrand.setCellValueFactory(new PropertyValueFactory<VehicleTm,Integer>("brandId"));
+        colTransmission.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("transmission"));
+        colDailyRental.setCellValueFactory(new PropertyValueFactory<VehicleTm,Double>("dailyRental"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("status"));
+
+        tblVehicle.getSelectionModel().selectedItemProperty().addListener(
+                ((observable, oldValue, newValue) -> {
+                    if (newValue!=null) setData((VehicleTm)newValue);
+                })
+        );
+    }
+
+    private void setData(VehicleTm newValue) {
+        txtVehicleId.setText(Integer.toString(newValue.getVehicleId()));
+        txtVehicleNumber.setText(newValue.getVehicleNumber());
+
+
     }
 
     private void setUi(String url) throws IOException {
@@ -84,7 +119,7 @@ public class VehicleViewController {
             if (vehicleBrandDtos.size()>=0){
                 txtBrand.getItems().addAll(vehicleBrandDtos);
                 txtBrand.valueProperty().addListener((observable, oldValue, newValue) -> {
-                    System.out.println(newValue.toString());
+                    //System.out.println(newValue.toString());
                 });
                 txtBrand.setConverter(new StringConverter<VehicleBrandDto>() {
                     @Override
@@ -109,7 +144,7 @@ public class VehicleViewController {
             if (vehicleCategoryDtos.size()>=0){
                 txtVehicleType.getItems().addAll(vehicleCategoryDtos);
                 txtVehicleType.valueProperty().addListener((observable, oldValue, newValue) -> {
-                    System.out.println(newValue.toString());
+                    //System.out.println(newValue.toString());
                 });
                 txtVehicleType.setConverter(new StringConverter<VehicleCategoryDto>() {
                     @Override
@@ -240,11 +275,80 @@ public class VehicleViewController {
     }
 
     public void addVehicleOnAction(ActionEvent actionEvent) {
-        if (isVehicleNumberValid() & isNumberOfSeatsValid()
-                & isVehicleModelValid() & isDailyRentalValid()
-                & isBrandValid() & isVehicleType() & isTransmission() & isModelYear()){
-            new Alert(Alert.AlertType.INFORMATION,"C").show();
+        if (btnAddVehicle.getText().equalsIgnoreCase("Add Vehicle")){
+            if (isVehicleNumberValid() & isNumberOfSeatsValid()
+                    & isVehicleModelValid() & isDailyRentalValid()
+                    & isBrandValid() & isVehicleType() & isTransmission() & isModelYear()){
+                if (getVehicle()==null){
+                    try {
+                        int i = vehicleService.addVehicle(new VehicleDto(
+                                0,
+                                txtVehicleNumber.getText(),
+                                ((VehicleBrandDto)txtBrand.getSelectionModel().getSelectedItem()).getId(),
+                                ((Integer) txtModelYear.getSelectionModel().getSelectedItem()),
+                                txtModel.getText(),
+                                ((VehicleCategoryDto)txtVehicleType.getSelectionModel().getSelectedItem()).getId(),
+                                (String) txtTransmission.getSelectionModel().getSelectedItem(),
+                                (Integer)txtNoOfSeats.getSelectionModel().getSelectedItem(),
+                                Double.parseDouble(txtDailyRental.getText()),
+                                txtStatus.getText()
+                        ));
+                        if (i>=0){
+                            new Alert(Alert.AlertType.INFORMATION,"Vehicle Added Successfully").show();
+                            loadAllVehicles();
+                            clearFields();
+                        }else {
+                            new Alert(Alert.AlertType.ERROR,"Vehicle Saving failed").show();
+                        }
+                    }catch (Exception e){
+                        new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                    }
+                }else {
+                    new Alert(Alert.AlertType.ERROR,"Vehicle number already exists").show();
+                    lblVehicleNumber.setVisible(true);
+                }
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Invalid User Inputs. Please check and try again.").show();
+            }
+        }else{
+
         }
+    }
+
+    private void loadAllVehicles(){
+        ObservableList<VehicleTm> observableList = FXCollections.observableArrayList();
+        try {
+            ArrayList<VehicleDto> vehicleTms = vehicleService.getAllVehicles();
+            if (vehicleTms.size()>0){
+                for (VehicleDto vehicleDto:vehicleTms){
+                    observableList.add(new VehicleTm(
+                            vehicleDto.getVehicleId(),
+                            vehicleDto.getVehicleNumber(),
+                            vehicleDto.getBrandId(),
+                            vehicleDto.getYear(),
+                            vehicleDto.getModel(),
+                            vehicleDto.getVehicleTypeId(),
+                            vehicleDto.getTransmission(),
+                            vehicleDto.getNoOfSeats(),
+                            vehicleDto.getDailyRental(),
+                            vehicleDto.getStatus()));
+            }
+            }
+        }catch (Exception e){
+            new Alert(Alert.AlertType.ERROR,"An error occurred while loading.").show();
+        }
+        tblVehicle.setItems(observableList);
+    }
+
+    private VehicleDto getVehicle(){
+        VehicleDto vehicleDto;
+        try {
+            vehicleDto = vehicleService.getVehicle(txtVehicleNumber.getText());
+        }catch (Exception e){
+            vehicleDto = null;
+            new Alert(Alert.AlertType.ERROR,"An error occurred").show();
+        }
+        return vehicleDto;
     }
 
     public void clearFieldsOnAction(ActionEvent actionEvent) {

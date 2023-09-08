@@ -57,16 +57,14 @@ public class UserServiceImpl implements UserService {
                 userDto.getLevel(),
                 userDto.getStatus()
         );
-        int i = userDao.update("",userEntity,session);
+        int i = userDao.update(userEntity,session);
         return i;
     }
 
     @Override
     public ArrayList<UserDto> getAllUsers() throws Exception {
-        List<Object> userEntities = userDao.getAll(session);
         ArrayList<UserDto> users = new ArrayList<>();
-        for (Object u:userEntities) {
-            UserEntity userEntity = (UserEntity)u;
+        for (UserEntity userEntity:userDao.getAll(session)) {
             users.add(new UserDto(
                     userEntity.getUserId(),
                     userEntity.getFirstName(),

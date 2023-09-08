@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleBrandDaoImpl implements VehicleBrandDao {
-    @Override
+
     public VehicleBrandEntity get(String s, Session session, boolean a) throws Exception {
         return null;
     }
@@ -33,6 +33,11 @@ public class VehicleBrandDaoImpl implements VehicleBrandDao {
                 "update VehicleBrandEntity set vehicleBrand=?1 where id=?2",
                 session,
                 vehicleBrand.getVehicleBrand(),vehicleBrand.getId());
+    }
+
+    @Override
+    public int delete(String s, Session session) throws Exception {
+        return 0;
     }
 
     @Override
