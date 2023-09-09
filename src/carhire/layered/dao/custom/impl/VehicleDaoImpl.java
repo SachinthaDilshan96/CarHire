@@ -17,6 +17,7 @@ public class VehicleDaoImpl implements VehicleDao {
 
     @Override
     public int add(VehicleEntity vehicleEntity, Session session) throws Exception {
+        System.out.println(vehicleEntity);
         return CrudUtil.save(vehicleEntity,session);
     }
 

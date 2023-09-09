@@ -18,14 +18,16 @@ public class VehicleEntity {
     private int vehicleId;
     @Column(name = "VehicleNumber")
     private String vehicleNumber;
-    @Column(name = "Brand")
-    private int brandId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Brand")
+    private VehicleBrandEntity vehicleBrandEntity;
     @Column(name = "Year")
     private int year;
     @Column(name = "Model")
     private String model;
-    @Column(name = "VehicleType")
-    private int vehicleTypeId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "VehicleType")
+    private VehicleCategoryEntity vehicleCategoryEntity;
     @Column(name = "Transmission")
     private String transmission;
     @Column(name = "NoOfSeats")

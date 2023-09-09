@@ -2,7 +2,11 @@ package carhire.layered.service.custom.impl;
 
 import carhire.layered.dao.DaoFactory;
 import carhire.layered.dao.custom.VehicleDao;
+import carhire.layered.dto.VehicleBrandDto;
+import carhire.layered.dto.VehicleCategoryDto;
 import carhire.layered.dto.VehicleDto;
+import carhire.layered.entity.VehicleBrandEntity;
+import carhire.layered.entity.VehicleCategoryEntity;
 import carhire.layered.entity.VehicleEntity;
 import carhire.layered.service.custom.VehicleService;
 import carhire.layered.util.SessionFactoryConfiguration;
@@ -18,10 +22,10 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleDao.add(new VehicleEntity(
                 vehicleDto.getVehicleId(),
                 vehicleDto.getVehicleNumber(),
-                vehicleDto.getBrandId(),
+                new VehicleBrandEntity(vehicleDto.getVehicleBrandDto().getId(),vehicleDto.getVehicleBrandDto().getVehicleBrand()),
                 vehicleDto.getYear(),
                 vehicleDto.getModel(),
-                vehicleDto.getVehicleTypeId(),
+                new VehicleCategoryEntity(vehicleDto.getVehicleCategoryDto().getId(),vehicleDto.getVehicleCategoryDto().getVehicleCategory()),
                 vehicleDto.getTransmission(),
                 vehicleDto.getNoOfSeats(),
                 vehicleDto.getDailyRental(),
@@ -33,10 +37,10 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleDao.update(new VehicleEntity(
                 vehicleDto.getVehicleId(),
                 vehicleDto.getVehicleNumber(),
-                vehicleDto.getBrandId(),
+                new VehicleBrandEntity(vehicleDto.getVehicleBrandDto().getId(),vehicleDto.getVehicleBrandDto().getVehicleBrand()),
                 vehicleDto.getYear(),
                 vehicleDto.getModel(),
-                vehicleDto.getVehicleTypeId(),
+                new VehicleCategoryEntity(vehicleDto.getVehicleCategoryDto().getId(),vehicleDto.getVehicleCategoryDto().getVehicleCategory()),
                 vehicleDto.getTransmission(),
                 vehicleDto.getNoOfSeats(),
                 vehicleDto.getDailyRental(),
@@ -50,10 +54,10 @@ public class VehicleServiceImpl implements VehicleService {
         return new VehicleDto(
                 vehicleEntity.getVehicleId(),
                 vehicleEntity.getVehicleNumber(),
-                vehicleEntity.getBrandId(),
+                new VehicleBrandDto(vehicleEntity.getVehicleBrandEntity().getId(),vehicleEntity.getVehicleBrandEntity().getVehicleBrand()),
                 vehicleEntity.getYear(),
                 vehicleEntity.getModel(),
-                vehicleEntity.getVehicleTypeId(),
+                new VehicleCategoryDto(vehicleEntity.getVehicleCategoryEntity().getCategoryID(),vehicleEntity.getVehicleCategoryEntity().getVehicleCategory()),
                 vehicleEntity.getTransmission(),
                 vehicleEntity.getNoOfSeats(),
                 vehicleEntity.getDailyRental(),
@@ -73,10 +77,10 @@ public class VehicleServiceImpl implements VehicleService {
             vehicleDtos.add(new VehicleDto(
                     vehicleEntity.getVehicleId(),
                     vehicleEntity.getVehicleNumber(),
-                    vehicleEntity.getBrandId(),
+                    new VehicleBrandDto(vehicleEntity.getVehicleBrandEntity().getId(),vehicleEntity.getVehicleBrandEntity().getVehicleBrand()),
                     vehicleEntity.getYear(),
                     vehicleEntity.getModel(),
-                    vehicleEntity.getVehicleTypeId(),
+                    new VehicleCategoryDto(vehicleEntity.getVehicleCategoryEntity().getCategoryID(),vehicleEntity.getVehicleCategoryEntity().getVehicleCategory()),
                     vehicleEntity.getTransmission(),
                     vehicleEntity.getNoOfSeats(),
                     vehicleEntity.getDailyRental(),

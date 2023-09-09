@@ -7,7 +7,10 @@ import carhire.layered.service.ServiceFactory;
 import carhire.layered.service.custom.VehicleBrandService;
 import carhire.layered.service.custom.VehicleCategoryService;
 import carhire.layered.service.custom.VehicleService;
+import carhire.layered.view.tm.VehicleBrandTm;
+import carhire.layered.view.tm.VehicleCategoryTm;
 import carhire.layered.view.tm.VehicleTm;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,7 +57,7 @@ public class VehicleViewController {
     public Label lblTransmission;
     public TableColumn colId;
     public TableColumn colNumber;
-    public TableColumn colBrand;
+    public TableColumn<VehicleTm,String> colBrand;
     public TableColumn colModel;
     public TableColumn colTransmission;
     public TableColumn colDailyRental;
@@ -76,7 +79,7 @@ public class VehicleViewController {
         colId.setCellValueFactory(new PropertyValueFactory<VehicleTm,Integer>("vehicleId"));
         colNumber.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("vehicleNumber"));
         colModel.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("model"));
-        colBrand.setCellValueFactory(new PropertyValueFactory<VehicleTm,Integer>("brandId"));
+        colBrand.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVehicleBrandTm().getBrandName()));
         colTransmission.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("transmission"));
         colDailyRental.setCellValueFactory(new PropertyValueFactory<VehicleTm,Double>("dailyRental"));
         colStatus.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("status"));
@@ -281,24 +284,34 @@ public class VehicleViewController {
                     & isBrandValid() & isVehicleType() & isTransmission() & isModelYear()){
                 if (getVehicle()==null){
                     try {
-                        int i = vehicleService.addVehicle(new VehicleDto(
-                                0,
-                                txtVehicleNumber.getText(),
-                                ((VehicleBrandDto)txtBrand.getSelectionModel().getSelectedItem()).getId(),
-                                ((Integer) txtModelYear.getSelectionModel().getSelectedItem()),
-                                txtModel.getText(),
-                                ((VehicleCategoryDto)txtVehicleType.getSelectionModel().getSelectedItem()).getId(),
-                                (String) txtTransmission.getSelectionModel().getSelectedItem(),
-                                (Integer)txtNoOfSeats.getSelectionModel().getSelectedItem(),
-                                Double.parseDouble(txtDailyRental.getText()),
-                                txtStatus.getText()
-                        ));
-                        if (i>=0){
-                            new Alert(Alert.AlertType.INFORMATION,"Vehicle Added Successfully").show();
-                            loadAllVehicles();
-                            clearFields();
-                        }else {
-                            new Alert(Alert.AlertType.ERROR,"Vehicle Saving failed").show();
+                        VehicleBrandDto vehicleBrandDto = vehicleBrandService.getVehicleBrand(((VehicleBrandDto)txtBrand.getSelectionModel().getSelectedItem()).getVehicleBrand());
+                        VehicleCategoryDto vehicleCategoryDto = vehicleCategoryService.getVehicleCategory( ((VehicleCategoryDto)txtVehicleType.getSelectionModel().getSelectedItem()).getVehicleCategory());
+                        if (vehicleBrandDto!=null & vehicleCategoryDto!=null){
+                            VehicleBrandDto vehicleBrandDtoToBeSaved = new VehicleBrandDto();
+                            vehicleBrandDtoToBeSaved.setId(vehicleBrandDto.getId());
+                            vehicleBrandDtoToBeSaved.setVehicleBrand(vehicleBrandDto.getVehicleBrand());
+                            VehicleCategoryDto vehicleCategoryDtoToBeSaved = new VehicleCategoryDto();
+                            vehicleCategoryDtoToBeSaved.setId(vehicleCategoryDto.getId());
+                            vehicleCategoryDtoToBeSaved.setVehicleCategory(vehicleCategoryDto.getVehicleCategory());
+                            int i = vehicleService.addVehicle(new VehicleDto(
+                                    0,
+                                    txtVehicleNumber.getText(),
+                                    vehicleBrandDtoToBeSaved,
+                                    ((Integer) txtModelYear.getSelectionModel().getSelectedItem()),
+                                    txtModel.getText(),
+                                    vehicleCategoryDtoToBeSaved,
+                                    (String) txtTransmission.getSelectionModel().getSelectedItem(),
+                                    (Integer)txtNoOfSeats.getSelectionModel().getSelectedItem(),
+                                    Double.parseDouble(txtDailyRental.getText()),
+                                    txtStatus.getText()
+                            ));
+                            if (i>=0){
+                                new Alert(Alert.AlertType.INFORMATION,"Vehicle Added Successfully").show();
+                                loadAllVehicles();
+                                clearFields();
+                            }else {
+                                new Alert(Alert.AlertType.ERROR,"Vehicle Saving failed").show();
+                            }
                         }
                     }catch (Exception e){
                         new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
@@ -324,10 +337,10 @@ public class VehicleViewController {
                     observableList.add(new VehicleTm(
                             vehicleDto.getVehicleId(),
                             vehicleDto.getVehicleNumber(),
-                            vehicleDto.getBrandId(),
+                            new VehicleBrandTm(vehicleDto.getVehicleBrandDto().getId(),vehicleDto.getVehicleBrandDto().getVehicleBrand()),
                             vehicleDto.getYear(),
                             vehicleDto.getModel(),
-                            vehicleDto.getVehicleTypeId(),
+                            new VehicleCategoryTm(vehicleDto.getVehicleCategoryDto().getId(),vehicleDto.getVehicleCategoryDto().getVehicleCategory()),
                             vehicleDto.getTransmission(),
                             vehicleDto.getNoOfSeats(),
                             vehicleDto.getDailyRental(),

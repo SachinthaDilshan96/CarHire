@@ -47,7 +47,7 @@
       </AnchorPane>
       <TableView fx:id="tblVehicleBrand" layoutX="206.0" layoutY="319.0" prefHeight="200.0" prefWidth="309.0">
          <placeholder>
-            <Label text="No Vehicle Categories to show" />
+            <Label text="No Vehicle Brands to show" />
          </placeholder>
          <columns>
             <TableColumn fx:id="colId" prefWidth="76.0" text="ID" />

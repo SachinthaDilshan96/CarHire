@@ -12,10 +12,10 @@ import javax.persistence.Table;
 public class VehicleDto {
         private int vehicleId;
         private String vehicleNumber;
-        private int brandId;
+        private VehicleBrandDto vehicleBrandDto;
         private int year;
         private String model;
-        private int vehicleTypeId;
+        private VehicleCategoryDto vehicleCategoryDto;
         private String transmission;
         private int noOfSeats;
         private double dailyRental;

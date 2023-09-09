@@ -3,9 +3,9 @@ package carhire.layered.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -18,4 +18,11 @@ public class VehicleCategoryEntity {
     private int categoryID;
     @Column(name = "Category")
     private String vehicleCategory;
+    @OneToMany(mappedBy = "vehicleCategoryEntity",targetEntity = VehicleEntity.class)
+    private List<VehicleEntity> vehicleEntities;
+
+    public VehicleCategoryEntity(int categoryID, String vehicleCategory) {
+        this.categoryID = categoryID;
+        this.vehicleCategory = vehicleCategory;
+    }
 }

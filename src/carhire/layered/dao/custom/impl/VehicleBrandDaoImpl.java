@@ -22,9 +22,7 @@ public class VehicleBrandDaoImpl implements VehicleBrandDao {
 
     @Override
     public int add(VehicleBrandEntity vehicleBrand, Session session) throws Exception {
-        int i = CrudUtil.save(vehicleBrand,session);
-        System.out.println(i+" thi is i");
-        return i;
+        return CrudUtil.save(vehicleBrand,session);
     }
 
     @Override
@@ -46,7 +44,7 @@ public class VehicleBrandDaoImpl implements VehicleBrandDao {
         ArrayList<VehicleBrandEntity> vehicleBrandEntities = new ArrayList<>();
         for (Object o:results) {
             VehicleBrandEntity vehicleBrand = (VehicleBrandEntity) o;
-            vehicleBrandEntities.add(new VehicleBrandEntity(vehicleBrand.getId(),vehicleBrand.getVehicleBrand()));
+            vehicleBrandEntities.add(new VehicleBrandEntity(vehicleBrand.getId(), vehicleBrand.getVehicleBrand()));
         }
         return vehicleBrandEntities;
     }

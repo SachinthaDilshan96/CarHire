@@ -10,10 +10,10 @@ import lombok.*;
 public class VehicleTm {
     private int vehicleId;
     private String vehicleNumber;
-    private int brandId;
+    private VehicleBrandTm vehicleBrandTm;
     private int year;
     private String model;
-    private int vehicleTypeId;
+    private VehicleCategoryTm vehicleCategoryTm;
     private String transmission;
     private int noOfSeats;
     private double dailyRental;
