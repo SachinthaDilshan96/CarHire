@@ -77,7 +77,7 @@ public class DashboardViewController {
     }
 
     public void HiresOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("HiresView");
+        setUi("HireSectionView");
     }
 
     public void NewHireOnAction(ActionEvent actionEvent) throws IOException {

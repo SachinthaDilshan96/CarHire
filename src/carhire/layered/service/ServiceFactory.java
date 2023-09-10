@@ -1,9 +1,6 @@
 package carhire.layered.service;
 
-import carhire.layered.service.custom.impl.UserServiceImpl;
-import carhire.layered.service.custom.impl.VehicleBrandServiceImpl;
-import carhire.layered.service.custom.impl.VehicleCategoryServiceImpl;
-import carhire.layered.service.custom.impl.VehicleServiceImpl;
+import carhire.layered.service.custom.impl.*;
 
 public class ServiceFactory {
     private static ServiceFactory serviceFactory;
@@ -26,12 +23,14 @@ public class ServiceFactory {
                 return new VehicleBrandServiceImpl();
             case VEHICLE_SERVICE:
                 return new VehicleServiceImpl();
+            case CUSTOMER:
+                return new CustomerServiceImpl();
             default:
                 return null;
         }
     }
 
     public enum ServiceType{
-        USER,VEHICLE_CATEGORY,VEHICLE_BRAND,VEHICLE_SERVICE
+        USER,VEHICLE_CATEGORY,VEHICLE_BRAND,VEHICLE_SERVICE,CUSTOMER
     }
 }

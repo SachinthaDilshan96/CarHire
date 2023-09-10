@@ -3,6 +3,7 @@ package carhire.layered.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +27,12 @@ public class NewHireViewController {
     public TextField txtFrom;
     public TextField txtTo;
     public TextField txtCharge;
+    public TextField txtAddress;
+    public TextField txtMobile;
+    public TableColumn colVehicleNumber;
+    public TableColumn cooModel;
+    public TableColumn colSelection;
+    public TableColumn colMoreDetail;
 
     private void setUi(String url) throws IOException {
         Stage stage = (Stage) newHireViewContext.getScene().getWindow();
@@ -36,6 +43,7 @@ public class NewHireViewController {
     }
 
     public void SearchCustomerOnAction(ActionEvent actionEvent) {
+
     }
 
     public void BackToHomeOnAction(ActionEvent actionEvent) throws IOException {
