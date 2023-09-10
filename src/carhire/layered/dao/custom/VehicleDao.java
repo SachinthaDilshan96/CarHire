@@ -5,4 +5,5 @@ import carhire.layered.entity.VehicleEntity;
 import org.hibernate.Session;
 
 public interface VehicleDao extends CrudDao<VehicleEntity,String, Session> {
+    public VehicleEntity getVehicleByID(int vehicleID, Session session) throws Exception;
 }

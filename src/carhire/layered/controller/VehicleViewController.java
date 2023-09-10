@@ -69,6 +69,9 @@ public class VehicleViewController {
     private VehicleCategoryService vehicleCategoryService = (VehicleCategoryService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_CATEGORY);
     private VehicleService vehicleService = (VehicleService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_SERVICE);
 
+    final String addNewVehicleString = "Add Vehicle";
+    final String updateVehicleString = "Update Vehicle";
+
     public void initialize(){
         setVehicleBrands();
         setVehicleCategories();
@@ -94,7 +97,15 @@ public class VehicleViewController {
     private void setData(VehicleTm newValue) {
         txtVehicleId.setText(Integer.toString(newValue.getVehicleId()));
         txtVehicleNumber.setText(newValue.getVehicleNumber());
-
+        txtBrand.getSelectionModel().select(new VehicleBrandDto(newValue.getVehicleBrandTm().getId(),newValue.getVehicleBrandTm().getBrandName()));
+        txtModelYear.getSelectionModel().select(new Integer(newValue.getYear()));
+        txtModel.setText(newValue.getModel());
+        txtVehicleType.getSelectionModel().select(new VehicleCategoryDto(newValue.getVehicleCategoryTm().getId(),newValue.getVehicleCategoryTm().getVehicleType()));
+        txtTransmission.getSelectionModel().select(newValue.getTransmission());
+        txtNoOfSeats.getSelectionModel().select(new Integer(newValue.getNoOfSeats()));
+        txtDailyRental.setText(Double.toString(newValue.getDailyRental()));
+        txtStatus.setText(newValue.getStatus());
+        changeAddNewButtonText(updateVehicleString);
 
     }
 
@@ -106,7 +117,53 @@ public class VehicleViewController {
         stage.centerOnScreen();
     }
 
-    public void UpdateVehicleOnAction(ActionEvent actionEvent) {
+    private void changeAddNewButtonText(String text){
+        btnAddVehicle.setText(text);
+    }
+
+    public void UpdateVehicleOnAction() {
+        System.out.println((VehicleBrandDto)txtBrand.getSelectionModel().getSelectedItem()!=null);
+        if (isVehicleNumberValid() & isNumberOfSeatsValid()
+                & isVehicleModelValid() & isDailyRentalValid()
+                & isBrandValid() & isVehicleType() & isTransmission() & isModelYear()){
+            if (getVehicleByID()!=null){
+                try {
+                    //verify whether the vehiclebrand and category are available in the database
+                    VehicleBrandDto vehicleBrandDto = vehicleBrandService.getVehicleBrand(((VehicleBrandDto)txtBrand.getSelectionModel().getSelectedItem()).getVehicleBrand());
+                    VehicleCategoryDto vehicleCategoryDto = vehicleCategoryService.getVehicleCategory( ((VehicleCategoryDto)txtVehicleType.getSelectionModel().getSelectedItem()).getVehicleCategory());
+                    if (vehicleBrandDto!=null & vehicleCategoryDto!=null){
+                        VehicleBrandDto vehicleBrandDtoToBeSaved = new VehicleBrandDto();
+                        vehicleBrandDtoToBeSaved.setId(vehicleBrandDto.getId());
+                        vehicleBrandDtoToBeSaved.setVehicleBrand(vehicleBrandDto.getVehicleBrand());
+                        VehicleCategoryDto vehicleCategoryDtoToBeSaved = new VehicleCategoryDto();
+                        vehicleCategoryDtoToBeSaved.setId(vehicleCategoryDto.getId());
+                        vehicleCategoryDtoToBeSaved.setVehicleCategory(vehicleCategoryDto.getVehicleCategory());
+                        int i = vehicleService.updateVehicle(new VehicleDto(
+                                Integer.parseInt(txtVehicleId.getText()),
+                                txtVehicleNumber.getText(),
+                                vehicleBrandDtoToBeSaved,
+                                ((Integer) txtModelYear.getSelectionModel().getSelectedItem()),
+                                txtModel.getText(),
+                                vehicleCategoryDtoToBeSaved,
+                                (String) txtTransmission.getSelectionModel().getSelectedItem(),
+                                (Integer)txtNoOfSeats.getSelectionModel().getSelectedItem(),
+                                Double.parseDouble(txtDailyRental.getText()),
+                                txtStatus.getText()
+                        ));
+                        if (i>=0){
+                            new Alert(Alert.AlertType.INFORMATION,"Vehicle Updated Successfully").show();
+                            loadAllVehicles();
+                            clearFields();
+                            changeAddNewButtonText(addNewVehicleString);
+                        }else {
+                            new Alert(Alert.AlertType.ERROR,"Vehicle Updation failed").show();
+                        }
+                    }
+                }catch (Exception e){
+                    new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+                }
+    }
+    }
     }
 
     public void DeleteVehicleOnAction(ActionEvent actionEvent) {
@@ -198,7 +255,7 @@ public class VehicleViewController {
         }
     }
     private boolean isNumberOfSeatsValid(){
-        if (txtNoOfSeats.getSelectionModel().isEmpty()){
+        if (txtNoOfSeats.getSelectionModel().getSelectedItem()==null){
             lblNumberOfSeats.setVisible(true);
             return false;
         }else{
@@ -208,7 +265,7 @@ public class VehicleViewController {
     }
 
     private boolean isDailyRentalValid(){
-        if (Pattern.compile("[^0-9]").matcher(txtDailyRental.getText()).find() | (txtDailyRental.getText().length()==0)){
+        if (Pattern.compile("[^0-9.]").matcher(txtDailyRental.getText()).find() | (txtDailyRental.getText().length()==0)){
             lblDailyRental.setVisible(true);
             return false;
         }else{
@@ -218,7 +275,7 @@ public class VehicleViewController {
     }
 
     private boolean isBrandValid(){
-        if (txtBrand.getSelectionModel().isEmpty()){
+        if (txtBrand.getSelectionModel().getSelectedItem()==null){
             lblBrand.setVisible(true);
             return false;
         }else{
@@ -228,7 +285,7 @@ public class VehicleViewController {
     }
 
     private boolean isVehicleType(){
-        if (txtVehicleType.getSelectionModel().isEmpty()){
+        if (txtVehicleType.getSelectionModel().getSelectedItem()==null){
             lblVehicleType.setVisible(true);
             return false;
         }else{
@@ -238,7 +295,7 @@ public class VehicleViewController {
     }
 
     private boolean isTransmission(){
-        if (txtTransmission.getSelectionModel().isEmpty()){
+        if (txtTransmission.getSelectionModel().getSelectedItem()==null){
             lblTransmission.setVisible(true);
             return false;
         }else{
@@ -247,7 +304,7 @@ public class VehicleViewController {
         }
     }
     private boolean isModelYear(){
-        if (txtModelYear.getSelectionModel().isEmpty()){
+        if (txtModelYear.getSelectionModel().getSelectedItem()==null){
             lblModelYear.setVisible(true);
             return false;
         }else{
@@ -284,6 +341,7 @@ public class VehicleViewController {
                     & isBrandValid() & isVehicleType() & isTransmission() & isModelYear()){
                 if (getVehicle()==null){
                     try {
+                        //verify whether the vehiclebrand and category are available in the database
                         VehicleBrandDto vehicleBrandDto = vehicleBrandService.getVehicleBrand(((VehicleBrandDto)txtBrand.getSelectionModel().getSelectedItem()).getVehicleBrand());
                         VehicleCategoryDto vehicleCategoryDto = vehicleCategoryService.getVehicleCategory( ((VehicleCategoryDto)txtVehicleType.getSelectionModel().getSelectedItem()).getVehicleCategory());
                         if (vehicleBrandDto!=null & vehicleCategoryDto!=null){
@@ -324,7 +382,7 @@ public class VehicleViewController {
                 new Alert(Alert.AlertType.ERROR,"Invalid User Inputs. Please check and try again.").show();
             }
         }else{
-
+            UpdateVehicleOnAction();
         }
     }
 
@@ -357,6 +415,17 @@ public class VehicleViewController {
         VehicleDto vehicleDto;
         try {
             vehicleDto = vehicleService.getVehicle(txtVehicleNumber.getText());
+        }catch (Exception e){
+            vehicleDto = null;
+            new Alert(Alert.AlertType.ERROR,"An error occurred").show();
+        }
+        return vehicleDto;
+    }
+
+    private VehicleDto getVehicleByID(){
+        VehicleDto vehicleDto;
+        try {
+            vehicleDto = vehicleService.getVehicle(Integer.parseInt(txtVehicleId.getText()));
         }catch (Exception e){
             vehicleDto = null;
             new Alert(Alert.AlertType.ERROR,"An error occurred").show();

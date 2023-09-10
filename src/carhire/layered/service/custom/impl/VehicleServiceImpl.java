@@ -89,4 +89,20 @@ public class VehicleServiceImpl implements VehicleService {
         }
         return vehicleDtos;
     }
+
+    @Override
+    public VehicleDto getVehicle(int vehicleID) throws Exception {
+        VehicleEntity vehicleEntity = vehicleDao.getVehicleByID(vehicleID,session);
+        return new VehicleDto(
+                vehicleEntity.getVehicleId(),
+                vehicleEntity.getVehicleNumber(),
+                new VehicleBrandDto(vehicleEntity.getVehicleBrandEntity().getId(),vehicleEntity.getVehicleBrandEntity().getVehicleBrand()),
+                vehicleEntity.getYear(),
+                vehicleEntity.getModel(),
+                new VehicleCategoryDto(vehicleEntity.getVehicleBrandEntity().getId(),vehicleEntity.getVehicleCategoryEntity().getVehicleCategory()),
+                vehicleEntity.getTransmission(),
+                vehicleEntity.getNoOfSeats(),
+                vehicleEntity.getDailyRental(),
+                vehicleEntity.getStatus());
+    }
 }

@@ -23,7 +23,18 @@ public class VehicleDaoImpl implements VehicleDao {
 
     @Override
     public int update(VehicleEntity vehicleEntity, Session session) throws Exception {
-        return CrudUtil.executeUpdate("Update VehicleEntity set VehicleNumber=?1,Brand=?2,Year=?3,Model=?4,VehicleType=?5,Transmission=?6,NoOfSeats=?7,DailyRental=?8 Where VehicleID=?9",session);
+        return CrudUtil.executeUpdate("Update VehicleEntity set " +
+                "VehicleNumber=?1,Brand=?2,Year=?3,Model=?4,VehicleType=?5,Transmission=?6,NoOfSeats=?7,DailyRental=?8 Where VehicleID=?9",
+                session,
+                vehicleEntity.getVehicleNumber(),
+                vehicleEntity.getVehicleBrandEntity().getId(),
+                vehicleEntity.getYear(),
+                vehicleEntity.getModel(),
+                vehicleEntity.getVehicleCategoryEntity().getCategoryID(),
+                vehicleEntity.getTransmission(),
+                vehicleEntity.getNoOfSeats(),
+                vehicleEntity.getDailyRental(),
+                vehicleEntity.getVehicleId());
     }
 
     @Override
@@ -42,4 +53,8 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
 
+    @Override
+    public VehicleEntity getVehicleByID(int vehicleID,Session session) throws Exception {
+        return (VehicleEntity) CrudUtil.getUniqueResult("FROM VehicleEntity where VehicleID=?1",session,vehicleID);
+    }
 }

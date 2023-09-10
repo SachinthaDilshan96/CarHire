@@ -11,4 +11,5 @@ public interface VehicleService extends SuperService {
     VehicleDto getVehicle(String vehicleNumber) throws Exception;
     int deleteVehicle(int vehicleID) throws Exception;
     ArrayList<VehicleDto> getAllVehicles() throws Exception;
+    VehicleDto getVehicle(int vehicleID) throws Exception;
 }
