@@ -1,5 +1,7 @@
 package carhire.layered.view.tm;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import lombok.*;
 
 @AllArgsConstructor
@@ -18,4 +20,5 @@ public class VehicleTm {
     private int noOfSeats;
     private double dailyRental;
     private String status;
+    private Button button;
 }

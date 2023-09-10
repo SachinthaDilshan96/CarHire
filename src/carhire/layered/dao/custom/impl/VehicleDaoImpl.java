@@ -43,6 +43,11 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
+    public int delete(Integer id, Session session) throws Exception {
+        return CrudUtil.executeUpdate("Update VehicleEntity set status='Out' where VehicleID=?1",session,id);
+    }
+
+    @Override
     public ArrayList<VehicleEntity> getAll(Session session) throws Exception {
         List<Object> result = CrudUtil.getListResult("From VehicleEntity",session);
         ArrayList<VehicleEntity> vehicleEntities = new ArrayList<>();
@@ -56,5 +61,10 @@ public class VehicleDaoImpl implements VehicleDao {
     @Override
     public VehicleEntity getVehicleByID(int vehicleID,Session session) throws Exception {
         return (VehicleEntity) CrudUtil.getUniqueResult("FROM VehicleEntity where VehicleID=?1",session,vehicleID);
+    }
+
+    @Override
+    public int makeVehicleIn(int id, Session session) throws Exception {
+        return CrudUtil.executeUpdate("Update VehicleEntity Set status='In' where VehicleID=?1",session,id);
     }
 }

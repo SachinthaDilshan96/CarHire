@@ -66,7 +66,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public int deleteVehicle(int vehicleID) throws Exception {
-        return 0;
+        return vehicleDao.delete(vehicleID,session);
     }
 
     @Override
@@ -104,5 +104,10 @@ public class VehicleServiceImpl implements VehicleService {
                 vehicleEntity.getNoOfSeats(),
                 vehicleEntity.getDailyRental(),
                 vehicleEntity.getStatus());
+    }
+
+    @Override
+    public int makeVehicleIn(int vehicleId) throws Exception {
+        return vehicleDao.makeVehicleIn(vehicleId,session);
     }
 }

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="vehicleViewContext" prefHeight="639.0" prefWidth="722.0" styleClass="backgroundColorVehiclePanel" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.VehicleViewController">
+<AnchorPane fx:id="vehicleViewContext" prefHeight="641.0" prefWidth="869.0" styleClass="backgroundColorVehiclePanel" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.VehicleViewController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="3.0" prefHeight="638.0" prefWidth="721.0" stylesheets="@HomeView.css">
+      <AnchorPane layoutX="7.0" layoutY="2.0" prefHeight="638.0" prefWidth="855.0" stylesheets="@HomeView.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="backgroundColorVehiclePanel" />
@@ -23,41 +23,41 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="20.0" layoutY="101.0" text="Vehicle ID" />
-            <TextField fx:id="txtVehicleId" editable="false" layoutX="118.0" layoutY="97.0" prefHeight="26.0" prefWidth="204.0" promptText="Vevicle ID" />
-            <Label layoutX="19.0" layoutY="134.0" text="Vehicle Number" />
-            <TextField fx:id="txtVehicleNumber" layoutX="118.0" layoutY="130.0" prefHeight="26.0" prefWidth="204.0" promptText="Vehicle Number(Ex CAA-1212)" />
-            <Label layoutX="20.0" layoutY="168.0" text="Brand" />
-            <Label layoutX="20.0" layoutY="202.0" text="Year" />
-            <Label layoutX="20.0" layoutY="234.0" text="Model" />
-            <TextField fx:id="txtModel" layoutX="118.0" layoutY="230.0" prefHeight="26.0" prefWidth="204.0" promptText="Model(Ex Corolla 121)" />
-            <Label layoutX="375.0" layoutY="101.0" text="Vehicle Type" />
-            <Label layoutX="374.0" layoutY="134.0" text="Transmission" />
-            <Label layoutX="374.0" layoutY="167.0" text="No of Seats" />
-            <Label layoutX="375.0" layoutY="201.0" text="Daily Rental" />
-            <TextField fx:id="txtDailyRental" layoutX="473.0" layoutY="197.0" prefHeight="26.0" prefWidth="204.0" promptText="Daily Rental(Ex 3200)" />
-            <Label layoutX="375.0" layoutY="234.0" text="Status" />
-            <TextField fx:id="txtStatus" editable="false" layoutX="473.0" layoutY="230.0" prefHeight="26.0" prefWidth="204.0" promptText="Status" text="In" />
-            <ComboBox fx:id="txtBrand" layoutX="118.0" layoutY="164.0" prefHeight="26.0" prefWidth="204.0" promptText="Brand" />
-            <ComboBox fx:id="txtVehicleType" layoutX="473.0" layoutY="97.0" prefHeight="26.0" prefWidth="204.0" promptText="Vehicle Type" />
-            <ComboBox fx:id="txtTransmission" layoutX="473.0" layoutY="130.0" prefHeight="26.0" prefWidth="204.0" promptText="Transmission" />
-            <Button fx:id="btnAddVehicle" layoutX="473.0" layoutY="287.0" mnemonicParsing="false" onAction="#addVehicleOnAction" text="Add Vehicle" />
-            <TableView fx:id="tblVehicle" layoutX="6.0" layoutY="343.0" prefHeight="241.0" prefWidth="693.0">
+            <Label layoutX="89.0" layoutY="98.0" text="Vehicle ID" />
+            <TextField fx:id="txtVehicleId" editable="false" layoutX="187.0" layoutY="94.0" prefHeight="26.0" prefWidth="204.0" promptText="Vevicle ID" />
+            <Label layoutX="88.0" layoutY="131.0" text="Vehicle Number" />
+            <TextField fx:id="txtVehicleNumber" layoutX="187.0" layoutY="127.0" prefHeight="26.0" prefWidth="204.0" promptText="Vehicle Number(Ex CAA-1212)" />
+            <Label layoutX="89.0" layoutY="165.0" text="Brand" />
+            <Label layoutX="89.0" layoutY="199.0" text="Year" />
+            <Label layoutX="89.0" layoutY="231.0" text="Model" />
+            <TextField fx:id="txtModel" layoutX="187.0" layoutY="227.0" prefHeight="26.0" prefWidth="204.0" promptText="Model(Ex Corolla 121)" />
+            <Label layoutX="444.0" layoutY="98.0" text="Vehicle Type" />
+            <Label layoutX="443.0" layoutY="131.0" text="Transmission" />
+            <Label layoutX="443.0" layoutY="164.0" text="No of Seats" />
+            <Label layoutX="444.0" layoutY="198.0" text="Daily Rental" />
+            <TextField fx:id="txtDailyRental" layoutX="542.0" layoutY="194.0" prefHeight="26.0" prefWidth="204.0" promptText="Daily Rental(Ex 3200)" />
+            <Label layoutX="444.0" layoutY="231.0" text="Status" />
+            <TextField fx:id="txtStatus" editable="false" layoutX="542.0" layoutY="227.0" prefHeight="26.0" prefWidth="204.0" promptText="Status" text="In" />
+            <ComboBox fx:id="txtBrand" layoutX="187.0" layoutY="161.0" prefHeight="26.0" prefWidth="204.0" promptText="Brand" />
+            <ComboBox fx:id="txtVehicleType" layoutX="542.0" layoutY="94.0" prefHeight="26.0" prefWidth="204.0" promptText="Vehicle Type" />
+            <ComboBox fx:id="txtTransmission" layoutX="542.0" layoutY="127.0" prefHeight="26.0" prefWidth="204.0" promptText="Transmission" />
+            <Button fx:id="btnAddVehicle" layoutX="542.0" layoutY="284.0" mnemonicParsing="false" onAction="#addVehicleOnAction" text="Add Vehicle" />
+            <TableView fx:id="tblVehicle" layoutX="-4.0" layoutY="343.0" prefHeight="241.0" prefWidth="855.0">
                <placeholder>
                   <Label text="No Vehicles to show" />
                </placeholder>
               <columns>
                 <TableColumn fx:id="colId" prefWidth="35.0" text="ID" />
-                <TableColumn fx:id="colNumber" prefWidth="81.0" text="Number" />
-                  <TableColumn fx:id="colBrand" prefWidth="99.0" text="Brand" />
-                  <TableColumn fx:id="colModel" prefWidth="109.0" text="Model" />
-                  <TableColumn fx:id="colTransmission" prefWidth="92.0" text="Transmission" />
-                  <TableColumn fx:id="colDailyRental" prefWidth="100.0" text="Daily Rental" />
-                  <TableColumn fx:id="colStatus" prefWidth="91.0" text="Status" />
-                  <TableColumn fx:id="colDelete" prefWidth="91.0" />
+                <TableColumn fx:id="colNumber" prefWidth="93.0" text="Number" />
+                  <TableColumn fx:id="colBrand" prefWidth="101.0" text="Brand" />
+                  <TableColumn fx:id="colModel" prefWidth="106.0" text="Model" />
+                  <TableColumn fx:id="colTransmission" prefWidth="100.0" text="Transmission" />
+                  <TableColumn fx:id="colDailyRental" prefWidth="157.0" text="Daily Rental" />
+                  <TableColumn fx:id="colStatus" prefWidth="100.0" text="Status" />
+                  <TableColumn fx:id="colDelete" prefWidth="162.0" />
               </columns>
             </TableView>
-            <Button layoutX="594.0" layoutY="287.0" mnemonicParsing="false" onAction="#clearFieldsOnAction" text="Clear Fields" />
+            <Button layoutX="663.0" layoutY="284.0" mnemonicParsing="false" onAction="#clearFieldsOnAction" text="Clear Fields" />
             <Label fx:id="lblVehicleNumber" layoutX="329.0" layoutY="130.0" text="*" textFill="#f50707" visible="false">
                <font>
                   <Font size="31.0" />
@@ -78,13 +78,13 @@
                   <Font size="31.0" />
                </font>
             </Label>
-            <ComboBox fx:id="txtModelYear" layoutX="118.0" layoutY="198.0" prefHeight="26.0" prefWidth="204.0" promptText="Model Year" />
+            <ComboBox fx:id="txtModelYear" layoutX="187.0" layoutY="195.0" prefHeight="26.0" prefWidth="204.0" promptText="Model Year" />
             <Label fx:id="lblModel" layoutX="329.0" layoutY="232.0" text="*" textFill="#f50707" visible="false">
                <font>
                   <Font size="31.0" />
                </font>
             </Label>
-            <ComboBox fx:id="txtNoOfSeats" layoutX="473.0" layoutY="164.0" prefHeight="26.0" prefWidth="204.0" promptText="No of Seats" />
+            <ComboBox fx:id="txtNoOfSeats" layoutX="542.0" layoutY="161.0" prefHeight="26.0" prefWidth="204.0" promptText="No of Seats" />
             <Label fx:id="lblModelYear" layoutX="329.0" layoutY="197.0" text="*" textFill="#f50707" visible="false">
                <font>
                   <Font size="31.0" />

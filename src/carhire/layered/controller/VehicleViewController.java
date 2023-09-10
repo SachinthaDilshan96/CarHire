@@ -19,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -27,6 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -86,6 +89,7 @@ public class VehicleViewController {
         colTransmission.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("transmission"));
         colDailyRental.setCellValueFactory(new PropertyValueFactory<VehicleTm,Double>("dailyRental"));
         colStatus.setCellValueFactory(new PropertyValueFactory<VehicleTm,String>("status"));
+        colDelete.setCellValueFactory(new PropertyValueFactory("button"));
 
         tblVehicle.getSelectionModel().selectedItemProperty().addListener(
                 ((observable, oldValue, newValue) -> {
@@ -167,6 +171,7 @@ public class VehicleViewController {
     }
 
     public void DeleteVehicleOnAction(ActionEvent actionEvent) {
+
     }
 
     public void BackToHomeOnAction(ActionEvent actionEvent) throws IOException {
@@ -392,6 +397,51 @@ public class VehicleViewController {
             ArrayList<VehicleDto> vehicleTms = vehicleService.getAllVehicles();
             if (vehicleTms.size()>0){
                 for (VehicleDto vehicleDto:vehicleTms){
+                    Button button = new Button();
+                    if (vehicleDto.getStatus().equalsIgnoreCase("In")){
+                        button.setText("Delete");
+                        ImageView imageView = new ImageView(new Image("carhire/layered/resources/delete.png"));
+                        button.setGraphic(imageView);
+                        button.setStyle("-fx-background-color: #c0392b;-fx-text-fill: white ");
+                        button.setOnAction((e)->{
+                            try{
+                                Alert alert =new Alert(Alert.AlertType.CONFIRMATION,"Are you sure?",ButtonType.OK,ButtonType.NO);
+                                Optional<ButtonType> selectedButtonType = alert.showAndWait();
+                                if (selectedButtonType.get().equals(ButtonType.OK )){
+                                    if (vehicleService.deleteVehicle(Integer.parseInt(txtVehicleId.getText()))>=0){
+                                        new Alert(Alert.AlertType.CONFIRMATION,"Vehicle Deleted!").show();
+                                        loadAllVehicles();
+                                    }else {
+                                        new Alert(Alert.AlertType.WARNING,"An error occurred. Try Again!").show();
+                                    }
+                                }
+                            }catch (Exception er){
+                                new Alert(Alert.AlertType.WARNING,"Please select the row need to be deleted").show();
+                            }
+                        });
+                    } else if (vehicleDto.getStatus().equalsIgnoreCase("Out")) {
+                        button.setText("Make In");
+                        ImageView imageView = new ImageView(new Image("carhire/layered/resources/in.png"));
+                        button.setGraphic(imageView);
+                        button.setStyle("-fx-background-color: #16a085;-fx-text-fill: white ");
+                        button.setOnAction((e) -> {
+                                    try {
+                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.OK, ButtonType.NO);
+                                        Optional<ButtonType> selectedButtonType = alert.showAndWait();
+                                        if (selectedButtonType.get().equals(ButtonType.OK)) {
+                                            if (vehicleService.makeVehicleIn(Integer.parseInt(txtVehicleId.getText())) >= 0) {
+                                                new Alert(Alert.AlertType.CONFIRMATION, "Vehicle Made In!").show();
+                                                loadAllVehicles();
+                                            } else {
+                                                new Alert(Alert.AlertType.WARNING, "An error occurred. Try Again!").show();
+                                            }
+                                        }
+                                    } catch (Exception er) {
+                                        new Alert(Alert.AlertType.WARNING, "Select the row to make in").show();
+                                    }
+                                }
+                        );
+                    }
                     observableList.add(new VehicleTm(
                             vehicleDto.getVehicleId(),
                             vehicleDto.getVehicleNumber(),
@@ -402,11 +452,12 @@ public class VehicleViewController {
                             vehicleDto.getTransmission(),
                             vehicleDto.getNoOfSeats(),
                             vehicleDto.getDailyRental(),
-                            vehicleDto.getStatus()));
+                            vehicleDto.getStatus(),
+                           button));
             }
             }
         }catch (Exception e){
-            new Alert(Alert.AlertType.ERROR,"An error occurred while loading.").show();
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
         tblVehicle.setItems(observableList);
     }
