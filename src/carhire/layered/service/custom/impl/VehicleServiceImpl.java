@@ -110,4 +110,25 @@ public class VehicleServiceImpl implements VehicleService {
     public int makeVehicleIn(int vehicleId) throws Exception {
         return vehicleDao.makeVehicleIn(vehicleId,session);
     }
+
+    @Override
+    public ArrayList<VehicleDto> getAvailableVehicles() throws Exception {
+        ArrayList<VehicleEntity> result = vehicleDao.getAvailableVehicles(session);
+        ArrayList<VehicleDto> vehicleDtos = new ArrayList<>();
+        for (VehicleEntity vehicleEntity:result){
+            vehicleDtos.add(new VehicleDto(
+                    vehicleEntity.getVehicleId(),
+                    vehicleEntity.getVehicleNumber(),
+                    new VehicleBrandDto(vehicleEntity.getVehicleBrandEntity().getId(),vehicleEntity.getVehicleBrandEntity().getVehicleBrand()),
+                    vehicleEntity.getYear(),
+                    vehicleEntity.getModel(),
+                    new VehicleCategoryDto(vehicleEntity.getVehicleCategoryEntity().getCategoryID(),vehicleEntity.getVehicleCategoryEntity().getVehicleCategory()),
+                    vehicleEntity.getTransmission(),
+                    vehicleEntity.getNoOfSeats(),
+                    vehicleEntity.getDailyRental(),
+                    vehicleEntity.getStatus()
+            ));
+        }
+        return vehicleDtos;
+    }
 }

@@ -1,9 +1,6 @@
 package carhire.layered.util;
 
-import carhire.layered.entity.UserEntity;
-import carhire.layered.entity.VehicleBrandEntity;
-import carhire.layered.entity.VehicleCategoryEntity;
-import carhire.layered.entity.VehicleEntity;
+import carhire.layered.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,7 +14,8 @@ public class SessionFactoryConfiguration {
                 .addAnnotatedClass(UserEntity.class)
                 .addAnnotatedClass(VehicleCategoryEntity.class)
                 .addAnnotatedClass(VehicleBrandEntity.class)
-                .addAnnotatedClass(VehicleEntity.class);
+                .addAnnotatedClass(VehicleEntity.class)
+                .addAnnotatedClass(CustomerEntity.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 

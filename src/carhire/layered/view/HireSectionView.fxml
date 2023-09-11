@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="homeSectionContextPane" prefHeight="890.0" prefWidth="1103.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.HireSectionViewController">
+<AnchorPane fx:id="homeSectionContextPane" prefHeight="941.0" prefWidth="1120.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.HireSectionViewController">
    <children>
       <Label layoutX="499.0" layoutY="20.0" stylesheets="@HomeView.css" text="CarHire" textFill="WHITE">
          <font>
@@ -20,15 +20,15 @@
          </font>
       </Label>
       <Button layoutX="917.0" layoutY="48.0" mnemonicParsing="false" onAction="#BackToHomeOnAction" style="-fx-background-color: #c0392b;" stylesheets="@HomeView.css" text="Back To Home" textFill="WHITE" />
-      <AnchorPane fx:id="anchorPaneStage" layoutX="219.0" layoutY="179.0" prefHeight="710.0" prefWidth="884.0" stylesheets="@HomeView.css">
+      <AnchorPane fx:id="anchorPaneStage" layoutX="201.0" layoutY="179.0" prefHeight="762.0" prefWidth="916.0" stylesheets="@HomeView.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="backgroundColorVehiclePanel" />
          </styleClass>
       </AnchorPane>
-      <AnchorPane layoutX="15.0" layoutY="175.0" prefHeight="710.0" prefWidth="200.0" style="-fx-background-color: #7f8c8d;" stylesheets="@HomeView.css">
+      <AnchorPane layoutX="8.0" layoutY="179.0" prefHeight="762.0" prefWidth="187.0" style="-fx-background-color: #7f8c8d;" stylesheets="@HomeView.css">
          <children>
-            <Button fx:id="btnViewCustomers" layoutX="17.0" layoutY="54.0" mnemonicParsing="false" onAction="#VewCustomerOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="View Customers" textFill="#fcfcfc">
+            <Button fx:id="btnViewCustomers" layoutX="10.0" layoutY="54.0" mnemonicParsing="false" onAction="#VewCustomerOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="View Customers" textFill="#fcfcfc">
                <font>
                   <Font size="16.0" />
                </font>
@@ -36,7 +36,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnNewHire" layoutX="17.0" layoutY="125.0" mnemonicParsing="false" onAction="#NewHireOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="New Hire" textFill="#fcfcfc">
+            <Button fx:id="btnNewHire" layoutX="11.0" layoutY="125.0" mnemonicParsing="false" onAction="#NewHireOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="New Hire" textFill="#fcfcfc">
                <font>
                   <Font size="18.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnViewHires" layoutX="17.0" layoutY="196.0" mnemonicParsing="false" onAction="#ViewHiresOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="View  Hires" textFill="#fcfcfc">
+            <Button fx:id="btnViewHires" layoutX="11.0" layoutY="196.0" mnemonicParsing="false" onAction="#ViewHiresOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="View  Hires" textFill="#fcfcfc">
                <font>
                   <Font size="18.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnHandOver" layoutX="17.0" layoutY="270.0" mnemonicParsing="false" onAction="#HandOverOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Handover" textFill="#fcfcfc">
+            <Button fx:id="btnHandOver" layoutX="11.0" layoutY="270.0" mnemonicParsing="false" onAction="#HandOverOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Handover" textFill="#fcfcfc">
                <font>
                   <Font size="18.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnOverDueHires" layoutX="17.0" layoutY="340.0" mnemonicParsing="false" onAction="#OverDueHiresOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="OverDue Hires" textFill="#fcfcfc">
+            <Button fx:id="btnOverDueHires" layoutX="11.0" layoutY="340.0" mnemonicParsing="false" onAction="#OverDueHiresOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="OverDue Hires" textFill="#fcfcfc">
                <font>
                   <Font size="18.0" />
                </font>

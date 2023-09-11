@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,115 +12,256 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="newHireViewContext" prefHeight="738.0" prefWidth="892.0" styleClass="backgroundColorVehiclePanel" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.NewHireViewController">
+<AnchorPane fx:id="newHireViewContext" prefHeight="772.0" prefWidth="922.0" styleClass="backgroundColorVehiclePanel" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.NewHireViewController">
    <children>
-      <Label layoutX="61.0" layoutY="23.0" text="Customer NIC">
+      <Label layoutX="54.0" layoutY="8.0" text="Customer NIC">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNic" layoutX="215.0" layoutY="23.0" prefHeight="26.0" prefWidth="190.0" promptText="NIC (EX. 961212234)" />
-      <Button layoutX="293.0" layoutY="60.0" mnemonicParsing="false" onAction="#SearchCustomerOnAction" style="-fx-background-color: #2980b9;" text="Search Customer" textFill="WHITE" />
-      <Pane fx:id="panelCustomer" layoutX="19.0" layoutY="101.0" prefHeight="252.0" prefWidth="856.0" style="-fx-border-color: #34495e;">
+      <TextField fx:id="txtNic" layoutX="208.0" layoutY="8.0" prefHeight="26.0" prefWidth="190.0" promptText="NIC (EX. 961212234)" />
+      <Button layoutX="286.0" layoutY="45.0" mnemonicParsing="false" onAction="#SearchCustomerOnAction" style="-fx-background-color: #2980b9;" text="Search Customer" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Pane fx:id="panelCustomer" layoutX="9.0" layoutY="82.0" prefHeight="252.0" prefWidth="907.0" style="-fx-border-color: #34495e;">
          <children>
-            <Label layoutX="16.0" layoutY="36.0" text="First Name">
+            <Label layoutX="16.0" layoutY="73.0" text="First Name">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFirstName" layoutX="170.0" layoutY="36.0" prefHeight="26.0" prefWidth="210.0" promptText="First Name" />
+            <TextField fx:id="txtFirstName" layoutX="170.0" layoutY="73.0" prefHeight="26.0" prefWidth="210.0" promptText="First Name" />
             <Label layoutX="14.0" layoutY="2.0" text="Customer Details" textFill="#110101">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="16.0" layoutY="70.0" text="Last Name">
+            <Label layoutX="16.0" layoutY="107.0" text="Last Name">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtLastName" layoutX="170.0" layoutY="70.0" prefHeight="26.0" prefWidth="210.0" promptText="Last Name" />
-            <Label layoutX="16.0" layoutY="103.0" text="Address">
+            <TextField fx:id="txtLastName" layoutX="170.0" layoutY="107.0" prefHeight="26.0" prefWidth="210.0" promptText="Last Name" />
+            <Label layoutX="16.0" layoutY="140.0" text="Address">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtAddress" layoutX="170.0" layoutY="103.0" prefHeight="26.0" prefWidth="210.0" promptText="Address" />
-            <Label layoutX="16.0" layoutY="136.0" text="Mobile">
+            <TextField fx:id="txtAddress" layoutX="170.0" layoutY="140.0" prefHeight="26.0" prefWidth="210.0" promptText="Address" />
+            <Label layoutX="16.0" layoutY="173.0" text="Mobile">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtMobile" layoutX="170.0" layoutY="136.0" prefHeight="26.0" prefWidth="210.0" promptText="Mobile" />
-            <Button layoutX="253.0" layoutY="186.0" mnemonicParsing="false" onAction="#AddCustomerOnAction" style="-fx-background-color: #f39c12;" text="Add Customer" textFill="WHITE">
+            <TextField fx:id="txtMobile" layoutX="170.0" layoutY="173.0" prefHeight="26.0" prefWidth="210.0" promptText="Mobile" />
+            <Button layoutX="254.0" layoutY="209.0" mnemonicParsing="false" onAction="#AddCustomerOnAction" style="-fx-background-color: #f39c12;" text="Add Customer" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-         </children>
-      </Pane>
-      <Pane fx:id="panelHire" layoutX="21.0" layoutY="367.0" prefHeight="342.0" prefWidth="856.0" style="-fx-border-color: #34495e;">
-         <children>
-            <Label layoutX="16.0" layoutY="36.0" text="Hire ID">
+            <Button fx:id="btnClearCustomerFields" layoutX="407.0" layoutY="209.0" mnemonicParsing="false" onAction="#ClearCustomerFieldsOnAction" style="-fx-background-color: #7f8c8d;" text="Clear Fields" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="16.0" layoutY="39.0" text="Customer ID">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtHireID" editable="false" layoutX="170.0" layoutY="36.0" prefHeight="26.0" prefWidth="210.0" promptText="Hire ID" />
-            <Label layoutX="14.0" layoutY="5.0" text="Hire Details" textFill="#110101">
+            <TextField fx:id="txtCustomerId" editable="false" layoutX="170.0" layoutY="39.0" prefHeight="26.0" prefWidth="210.0" promptText="CustomerID" />
+            <Label fx:id="lblFirstName" layoutX="388.0" layoutY="74.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLastName" layoutX="388.0" layoutY="108.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblMobile" layoutX="389.0" layoutY="170.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAddress" layoutX="389.0" layoutY="139.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCustomerId" layoutX="388.0" layoutY="41.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="panelHire" layoutX="7.0" layoutY="343.0" prefHeight="415.0" prefWidth="907.0" style="-fx-border-color: #34495e;">
+         <children>
+            <Label layoutX="9.0" layoutY="2.0" text="Hire Details" textFill="#110101">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="16.0" layoutY="70.0" text="Vehicle">
+            <Label layoutX="14.0" layoutY="96.0" text="Vehicle">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="16.0" layoutY="103.0" text="Place By">
+            <Label layoutX="14.0" layoutY="126.0" text="Place By">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtPlaceBy" layoutX="170.0" layoutY="103.0" prefHeight="26.0" prefWidth="210.0" promptText="Address" />
-            <Button layoutX="239.0" layoutY="280.0" mnemonicParsing="false" onAction="#PlaceHireOnAction" style="-fx-background-color: #34495e;" text="Place Hire Order" textFill="WHITE">
+            <TextField fx:id="txtPlaceBy" editable="false" layoutX="168.0" layoutY="126.0" prefHeight="26.0" prefWidth="210.0" promptText="Place By" />
+            <Button layoutX="238.0" layoutY="367.0" mnemonicParsing="false" onAction="#PlaceHireOnAction" style="-fx-background-color: #34495e;" text="Place Hire Order" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <TableView fx:id="tableVehicles" layoutX="418.0" layoutY="48.0" prefHeight="200.0" prefWidth="430.0">
+            <TableView fx:id="tableVehicles" layoutX="393.0" layoutY="48.0" prefHeight="273.0" prefWidth="508.0">
+               <placeholder>
+                  <Label text="No Vehicles to show" />
+               </placeholder>
               <columns>
-                <TableColumn fx:id="colVehicleNumber" prefWidth="93.0" text="Vehicle Number" />
-                <TableColumn fx:id="cooModel" prefWidth="95.0" text="Model" />
-                  <TableColumn fx:id="colSelection" prefWidth="114.0" text="Selection" />
-                  <TableColumn fx:id="colMoreDetail" prefWidth="126.0" text="MoreDetails" />
+                <TableColumn fx:id="colVehicleID" prefWidth="60.0" text="VehicleId" />
+                  <TableColumn fx:id="colVehicleModel" prefWidth="104.0" text="Model" />
+                  <TableColumn fx:id="colDailyRental" prefWidth="86.0" text="Daily Rental" />
+                  <TableColumn fx:id="colType" prefWidth="77.0" text="Type" />
+                  <TableColumn fx:id="colTransmission" prefWidth="81.0" text="Transmission" />
+                  <TableColumn fx:id="colNumberOfSeats" prefWidth="99.0" text="No of Seats" />
               </columns>
             </TableView>
-            <Label layoutX="418.0" layoutY="24.0" text="Available Vehicles" textFill="#fcfcfc">
+            <Label layoutX="399.0" layoutY="15.0" text="Available Vehicles" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtVehicleID" editable="false" layoutX="170.0" layoutY="69.0" prefHeight="26.0" prefWidth="210.0" promptText="Vehicle Number" />
-            <Label layoutX="16.0" layoutY="137.0" text="From">
+            <TextField fx:id="txtVehicleID" editable="false" layoutX="168.0" layoutY="94.0" prefHeight="26.0" prefWidth="210.0" promptText="Vehicle Id" />
+            <Label layoutX="14.0" layoutY="158.0" text="Daily Rental">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFrom" layoutX="170.0" layoutY="137.0" prefHeight="26.0" prefWidth="210.0" promptText="From" />
-            <Label layoutX="16.0" layoutY="171.0" text="To">
+            <TextField fx:id="txtDailyRental" editable="false" layoutX="168.0" layoutY="158.0" prefHeight="26.0" prefWidth="210.0" promptText="Daily Rental" />
+            <Button fx:id="btnClearHireFields" layoutX="418.0" layoutY="336.0" mnemonicParsing="false" onAction="#ClearHireFieldsOnAction" style="-fx-background-color: #7f8c8d;" text="Clear Fields" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="14.0" layoutY="221.0" text="Total">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtTo" layoutX="170.0" layoutY="171.0" prefHeight="26.0" prefWidth="210.0" promptText="To" />
-            <Label layoutX="16.0" layoutY="204.0" text="Charge">
+            <TextField fx:id="txtTotal" editable="false" layoutX="168.0" layoutY="221.0" prefHeight="26.0" prefWidth="210.0" promptText="Total" />
+            <Label layoutX="14.0" layoutY="253.0" text="Deposit">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <TextField fx:id="txtCharge" layoutX="170.0" layoutY="204.0" prefHeight="26.0" prefWidth="210.0" promptText="Charge" />
+            <TextField fx:id="txtDeposit" layoutX="168.0" layoutY="253.0" prefHeight="26.0" prefWidth="210.0" promptText="Deposit" />
+            <Label layoutX="14.0" layoutY="286.0" text="Advance">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAdvance" layoutX="168.0" layoutY="286.0" prefHeight="26.0" prefWidth="210.0" promptText="Advance" />
+            <Label layoutX="14.0" layoutY="319.0" text="Balance">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtBalance" editable="false" layoutX="168.0" layoutY="319.0" prefHeight="26.0" prefWidth="210.0" promptText="Balance" />
+            <Label fx:id="lblVehicleId" layoutX="382.0" layoutY="33.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPlacedBy" layoutX="382.0" layoutY="63.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblFrom" layoutX="382.0" layoutY="94.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTo" layoutX="382.0" layoutY="129.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDailyRental" layoutX="382.0" layoutY="160.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotal" layoutX="382.0" layoutY="224.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets top="-2.0" />
+               </opaqueInsets>
+            </Label>
+            <Label fx:id="lblDeposit" layoutX="382.0" layoutY="254.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAdvance" layoutX="383.0" layoutY="288.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblBalance" layoutX="383.0" layoutY="320.0" text="*" textFill="#f20101" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets top="-7.0" />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="14.0" layoutY="190.0" text="Number of Days">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNumberOfDays" editable="false" layoutX="168.0" layoutY="190.0" prefHeight="26.0" prefWidth="210.0" promptText="No of Days" />
+            <Label layoutX="13.0" layoutY="29.0" text="From">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="61.0" text="To">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fromDate" layoutX="167.0" layoutY="29.0" prefHeight="26.0" prefWidth="210.0" promptText="From Date" />
+            <DatePicker fx:id="toDate" layoutX="168.0" layoutY="61.0" prefHeight="26.0" prefWidth="210.0" promptText="To Date" />
          </children>
       </Pane>
+      <Label fx:id="lblNIC" layoutX="413.0" layoutY="26.0" text="*" textFill="#f20101" visible="false">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

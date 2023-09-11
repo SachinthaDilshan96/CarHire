@@ -15,6 +15,6 @@ public class CustomerDto {
     private String nic;
     private Name name;
     private String address;
-    private int mobileNumber;
+    private String mobileNumber;
 
 }

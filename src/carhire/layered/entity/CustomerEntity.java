@@ -16,12 +16,14 @@ import javax.persistence.*;
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "customerid")
+    private int customerid;
     @Column(name = "nic")
     private String nic;
+    @Embedded
     private CustomerName customerName;
     @Column(name = "address")
     private String address;
     @Column(name = "phone")
-    private int mobile;
+    private String mobile;
 }

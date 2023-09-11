@@ -67,4 +67,14 @@ public class VehicleDaoImpl implements VehicleDao {
     public int makeVehicleIn(int id, Session session) throws Exception {
         return CrudUtil.executeUpdate("Update VehicleEntity Set status='In' where VehicleID=?1",session,id);
     }
+
+    @Override
+    public ArrayList<VehicleEntity> getAvailableVehicles(Session session) throws Exception {
+        List<Object> result = CrudUtil.getListResult("From VehicleEntity Where status='In'",session);
+        ArrayList<VehicleEntity> vehicleEntities = new ArrayList<>();
+        for (Object object:result) {
+            vehicleEntities.add((VehicleEntity)object );
+        }
+        return vehicleEntities;
+    }
 }
