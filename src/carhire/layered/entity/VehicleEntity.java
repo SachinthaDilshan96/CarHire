@@ -3,10 +3,10 @@ package carhire.layered.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Vehicle")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -34,6 +34,23 @@ public class VehicleEntity {
     private int noOfSeats;
     @Column(name = "DailyRental")
     private double dailyRental;
+
+    public VehicleEntity(int vehicleId, String vehicleNumber, VehicleBrandEntity vehicleBrandEntity, int year, String model, VehicleCategoryEntity vehicleCategoryEntity, String transmission, int noOfSeats, double dailyRental, String status) {
+        this.vehicleId = vehicleId;
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleBrandEntity = vehicleBrandEntity;
+        this.year = year;
+        this.model = model;
+        this.vehicleCategoryEntity = vehicleCategoryEntity;
+        this.transmission = transmission;
+        this.noOfSeats = noOfSeats;
+        this.dailyRental = dailyRental;
+        this.status = status;
+    }
+
     @Column(name = "Status")
     private String status;
+    @OneToMany(mappedBy = "vehicleEntity",targetEntity = HireEntity.class)
+    private List<HireEntity> hireEntities;
+
 }

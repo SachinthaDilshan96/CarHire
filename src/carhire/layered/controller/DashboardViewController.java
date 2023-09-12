@@ -21,8 +21,6 @@ public class DashboardViewController {
     public Label lblTime;
     public AnchorPane dashboardContext;
     public Button btnHires;
-    public Button btnNewHire;
-    public Button btnReturnVehicle;
     public Label lblUserName;
     public Button btnLogOut;
     public Button btnUsers;
@@ -80,28 +78,8 @@ public class DashboardViewController {
         setUi("HireSectionView");
     }
 
-    public void NewHireOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("NewHireView");
-    }
-
-    public void ReturnVehicleOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("ReturnVehicleView");
-    }
-
-    public void AddNewVehicleOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("AddNewVehicleView");
-    }
-
     public void VehiclesOnAction(ActionEvent actionEvent) throws IOException {
         setUi("VehicleSectionView");
-    }
-
-    public void AvailableVehiclesOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("AvailableVehicleView");
-    }
-
-    public void OverdueVehiclesOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("OverdueVehiclesView");
     }
 
     public void VisitProfileOnAction(ActionEvent actionEvent) throws IOException {

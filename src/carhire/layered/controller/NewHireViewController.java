@@ -2,10 +2,12 @@ package carhire.layered.controller;
 
 import carhire.layered.dto.CustomerDto;
 import carhire.layered.dto.Embedded.Name;
+import carhire.layered.dto.HireDto;
 import carhire.layered.dto.UserDto;
 import carhire.layered.dto.VehicleDto;
 import carhire.layered.service.ServiceFactory;
 import carhire.layered.service.custom.CustomerService;
+import carhire.layered.service.custom.HireService;
 import carhire.layered.service.custom.VehicleService;
 import carhire.layered.util.UserHolder;
 import carhire.layered.view.tm.AvailableVehicleTm;
@@ -23,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -73,9 +76,12 @@ public class NewHireViewController {
     public TableColumn<AvailableVehicleTm,String> colType;
     public TableColumn colTransmission;
     public TableColumn colNumberOfSeats;
+    public Button btnAddCustomer;
 
     CustomerService customerService = (CustomerService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.CUSTOMER);
     VehicleService vehicleService = (VehicleService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.VEHICLE_SERVICE);
+
+    HireService hireService = (HireService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.HIRE);
 
     final int maximumRentalPeriodInDays = 30;
 
@@ -156,9 +162,17 @@ public class NewHireViewController {
                 txtLastName.setText(customerDto.getName().getLastName());
                 txtAddress.setText(customerDto.getAddress());
                 txtMobile.setText(customerDto.getMobileNumber());
+                btnAddCustomer.setDisable(true);
+
             }else{
+                txtCustomerId.clear();
+                txtFirstName.clear();
+                txtLastName.clear();
+                txtAddress.clear();
+                txtMobile.clear();
                 new Alert(Alert.AlertType.WARNING,"Customer not found. Please add the customer first").show();
                 txtNic.requestFocus();
+                btnAddCustomer.setDisable(false);
             }
         }
     }
@@ -172,6 +186,7 @@ public class NewHireViewController {
         }
         return customerDto;
     }
+
 
     private void clearCustomerFields(){
         txtNic.clear();
@@ -202,7 +217,31 @@ public class NewHireViewController {
             new Alert(Alert.AlertType.WARNING,"Please enter a customer before proceed").show();
         }else {
             if(isFromDateValid() & isToDateValid(null) & isDepositValid() & isAdvanceValid() ){
-
+              try{
+                  int i = hireService.addHire(new HireDto(
+                          0,
+                          Integer.parseInt(txtVehicleID.getText()),
+                          Integer.parseInt(txtCustomerId.getText()),
+                          Integer.parseInt(txtPlaceBy.getText()),
+                          Date.valueOf(fromDate.getValue()),
+                          Date.valueOf(toDate.getValue()),
+                          false,
+                          Double.parseDouble(txtTotal.getText()),
+                          Double.parseDouble(txtDailyRental.getText()),
+                          Double.parseDouble(txtDeposit.getText()),
+                          Double.parseDouble(txtAdvance.getText()),
+                          Double.parseDouble(txtBalance.getText())
+                  ));
+                  if (i>=0){
+                      new Alert(Alert.AlertType.INFORMATION,"Hire placed successfully").show();
+                      clearHireFields();
+                      clearCustomerFields();
+                  }else{
+                      new Alert(Alert.AlertType.ERROR,"Hire placement failed").show();
+                  }
+              }catch (Exception e){
+                  new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+              }
             }
         }
     }

@@ -25,12 +25,14 @@ public class ServiceFactory {
                 return new VehicleServiceImpl();
             case CUSTOMER:
                 return new CustomerServiceImpl();
+            case HIRE:
+                return new HireServiceImpl();
             default:
                 return null;
         }
     }
 
     public enum ServiceType{
-        USER,VEHICLE_CATEGORY,VEHICLE_BRAND,VEHICLE_SERVICE,CUSTOMER
+        USER,VEHICLE_CATEGORY,VEHICLE_BRAND,VEHICLE_SERVICE,CUSTOMER,HIRE
     }
 }

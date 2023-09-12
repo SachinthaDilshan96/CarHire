@@ -14,4 +14,5 @@ public interface UserDao extends CrudDao<UserEntity,String,Session> {
     int delete(int id, Session session) throws Exception;
     ArrayList<UserEntity> getAll(Session session) throws Exception;
     int updateProfile(UserEntity userEntity, Session session) throws Exception;
+    UserEntity getById(int id,Session session) throws Exception;
 }

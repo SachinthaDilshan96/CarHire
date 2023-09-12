@@ -22,7 +22,8 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public int update(CustomerEntity customerEntity, Session session) throws Exception {
-        return 0;
+        return CrudUtil.executeUpdate("Update CustomerEntity set customerName=?1,address=?2,mobile=?3 Where customerid=?4",session,
+                customerEntity.getCustomerName(),customerEntity.getAddress(),customerEntity.getMobile(),customerEntity.getCustomerid());
     }
 
     @Override
@@ -44,4 +45,10 @@ public class CustomerDaoImpl implements CustomerDao {
     public int deleteByID(int id) throws Exception {
         return 0;
     }
+
+    @Override
+    public CustomerEntity getByID(int id, Session session) throws Exception {
+        return session.get(CustomerEntity.class,id);
+    }
+
 }

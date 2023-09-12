@@ -17,7 +17,6 @@ public class VehicleDaoImpl implements VehicleDao {
 
     @Override
     public int add(VehicleEntity vehicleEntity, Session session) throws Exception {
-        System.out.println(vehicleEntity);
         return CrudUtil.save(vehicleEntity,session);
     }
 
@@ -76,5 +75,10 @@ public class VehicleDaoImpl implements VehicleDao {
             vehicleEntities.add((VehicleEntity)object );
         }
         return vehicleEntities;
+    }
+
+    @Override
+    public int makeVehicleOn(int id,Session session) throws Exception {
+        return CrudUtil.executeUpdate("Update VehicleEntity Set status='On' where VehicleID=?1",session,id);
     }
 }

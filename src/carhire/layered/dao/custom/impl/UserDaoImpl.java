@@ -70,4 +70,9 @@ public class UserDaoImpl implements UserDao {
                 session,
                 userEntity.getFirstName(),userEntity.getLastName(),userEntity.getPassword(),userEntity.getUserId());
     }
+
+    @Override
+    public UserEntity getById(int id, Session session) throws Exception {
+        return session.get(UserEntity.class,id);
+    }
 }

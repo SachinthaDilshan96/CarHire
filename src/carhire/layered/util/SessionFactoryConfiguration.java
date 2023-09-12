@@ -15,7 +15,8 @@ public class SessionFactoryConfiguration {
                 .addAnnotatedClass(VehicleCategoryEntity.class)
                 .addAnnotatedClass(VehicleBrandEntity.class)
                 .addAnnotatedClass(VehicleEntity.class)
-                .addAnnotatedClass(CustomerEntity.class);
+                .addAnnotatedClass(CustomerEntity.class)
+                .addAnnotatedClass(HireEntity.class);
         sessionFactory = configuration.buildSessionFactory();
     }
 

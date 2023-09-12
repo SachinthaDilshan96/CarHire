@@ -5,8 +5,8 @@ import carhire.layered.entity.embeddeb.CustomerName;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -26,4 +26,14 @@ public class CustomerEntity {
     private String address;
     @Column(name = "phone")
     private String mobile;
+    @OneToMany(mappedBy = "customerEntity",targetEntity = HireEntity.class)
+    private List<CustomerEntity> customerEntities;
+
+    public CustomerEntity(int customerid, String nic, CustomerName customerName, String address, String mobile) {
+        this.customerid = customerid;
+        this.nic = nic;
+        this.customerName = customerName;
+        this.address = address;
+        this.mobile = mobile;
+    }
 }

@@ -44,8 +44,7 @@ public class VehicleServiceImpl implements VehicleService {
                 vehicleDto.getTransmission(),
                 vehicleDto.getNoOfSeats(),
                 vehicleDto.getDailyRental(),
-                vehicleDto.getStatus()
-        ),session);
+                vehicleDto.getStatus()),session);
     }
 
     @Override

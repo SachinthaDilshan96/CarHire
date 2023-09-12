@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -8,56 +10,95 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="customerViewContext" prefHeight="823.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.CustomerViewController">
+<AnchorPane fx:id="customerViewContext" prefHeight="772.0" prefWidth="922.0" stylesheets="@HomeView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carhire.layered.controller.CustomerViewController">
    <children>
-      <Label layoutX="436.0" layoutY="14.0" text="CarHire" textFill="WHITE">
-         <font>
-            <Font name="Apple Chancery" size="28.0" />
-         </font>
-      </Label>
-      <Button layoutX="852.0" layoutY="25.0" mnemonicParsing="false" onAction="#BackToHomeOnAction" style="-fx-background-color: #c0392b;" text="Back To Home" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Button>
-      <Label layoutX="127.0" layoutY="185.0" text="Enter Customer NIC" textFill="WHITE">
+      <Label layoutX="211.0" layoutY="61.0" text="Enter Customer NIC" textFill="#141414">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField layoutX="308.0" layoutY="184.0" prefHeight="26.0" prefWidth="315.0" promptText="NIC (Ex:961212234)" />
-      <Button layoutX="671.0" layoutY="184.0" mnemonicParsing="false" onAction="#SearchCustomerOnAction" style="-fx-background-color: #f39c12;" text="Search Customer" textFill="WHITE" />
-      <Label layoutX="133.0" layoutY="254.0" text="First Name" textFill="WHITE">
+      <TextField fx:id="txtNIC" layoutX="392.0" layoutY="60.0" prefHeight="26.0" prefWidth="315.0" promptText="NIC (Ex:961212234)" />
+      <Button fx:id="btnSearch" layoutX="594.0" layoutY="102.0" mnemonicParsing="false" onAction="#SearchCustomerOnAction" style="-fx-background-color: #f39c12;" text="Search Customer" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="217.0" layoutY="208.0" text="First Name" textFill="#141414">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField layoutX="308.0" layoutY="252.0" prefHeight="26.0" prefWidth="315.0" promptText="First Name (Ex:John)" />
-      <Label layoutX="133.0" layoutY="288.0" text="Last Name" textFill="WHITE">
+      <TextField fx:id="txtFirstName" layoutX="392.0" layoutY="206.0" prefHeight="26.0" prefWidth="315.0" promptText="First Name (Ex:John)" />
+      <Label layoutX="217.0" layoutY="242.0" text="Last Name" textFill="#141414">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField layoutX="308.0" layoutY="286.0" prefHeight="26.0" prefWidth="315.0" promptText="Last Name (Ex:Silva)" />
-      <Label layoutX="133.0" layoutY="322.0" text="Address" textFill="WHITE">
+      <TextField fx:id="txtLastName" layoutX="392.0" layoutY="240.0" prefHeight="26.0" prefWidth="315.0" promptText="Last Name (Ex:Silva)" />
+      <Label layoutX="217.0" layoutY="276.0" text="Address" textFill="#141414">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField layoutX="308.0" layoutY="320.0" prefHeight="26.0" prefWidth="315.0" promptText="Address" />
-      <Label layoutX="133.0" layoutY="357.0" text="Mobile" textFill="WHITE">
+      <TextField fx:id="txtAddress" layoutX="392.0" layoutY="274.0" prefHeight="26.0" prefWidth="315.0" promptText="Address" />
+      <Label layoutX="217.0" layoutY="311.0" text="Mobile" textFill="#141414">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField layoutX="308.0" layoutY="355.0" prefHeight="26.0" prefWidth="315.0" promptText="Mobile(Ex: 0711212123)" />
-      <Button layoutX="509.0" layoutY="399.0" mnemonicParsing="false" onAction="#UpdateCustomerOnAction" style="-fx-background-color: #34495e;" text="Update Customer" textFill="WHITE" />
-      <TableView layoutX="74.0" layoutY="463.0" prefHeight="300.0" prefWidth="852.0">
+      <TextField fx:id="txtMobile" layoutX="392.0" layoutY="309.0" prefHeight="26.0" prefWidth="315.0" promptText="Mobile(Ex: 0711212123)" />
+      <Button fx:id="btnUpdate" layoutX="593.0" layoutY="353.0" mnemonicParsing="false" onAction="#UpdateCustomerOnAction" style="-fx-background-color: #34495e;" text="Update Customer" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TableView fx:id="tblCustomer" layoutX="35.0" layoutY="420.0" prefHeight="300.0" prefWidth="852.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colID" prefWidth="75.0" text="CustomerID" />
+          <TableColumn fx:id="colNic" prefWidth="142.0" text="NIC" />
+            <TableColumn fx:id="colFirstName" prefWidth="132.0" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="132.0" text="Last Name" />
+            <TableColumn fx:id="colAddress" prefWidth="215.0" text="Address" />
+            <TableColumn fx:id="colMobile" prefWidth="153.0" text="Mobile" />
         </columns>
       </TableView>
+      <Label layoutX="217.0" layoutY="173.0" text="Customer Id" textFill="#141414">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCustomerId" editable="false" layoutX="392.0" layoutY="171.0" prefHeight="26.0" prefWidth="315.0" promptText="Customer Id" />
+      <Label fx:id="lblNIC" layoutX="714.0" layoutY="58.0" text="*" textFill="#fc0000" visible="false">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCustomerId" layoutX="714.0" layoutY="169.0" text="*" textFill="#fc0000" visible="false">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFirstName" layoutX="714.0" layoutY="203.0" text="*" textFill="#fc0000" visible="false">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLastName" layoutX="714.0" layoutY="237.0" text="*" textFill="#fc0000" visible="false">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAddress" layoutX="714.0" layoutY="271.0" text="*" textFill="#fc0000" visible="false">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMobile" layoutX="714.0" layoutY="306.0" text="*" textFill="#fc0000" visible="false">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
    </children>
+   <styleClass>
+      <String fx:value="backgroundColor" />
+      <String fx:value="backgroundColorVehiclePanel" />
+   </styleClass>
 </AnchorPane>

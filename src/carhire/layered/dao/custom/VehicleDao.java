@@ -12,4 +12,5 @@ public interface VehicleDao extends CrudDao<VehicleEntity,String, Session> {
      VehicleEntity getVehicleByID(int vehicleID, Session session) throws Exception;
      int makeVehicleIn(int id, Session session) throws Exception;
      ArrayList<VehicleEntity> getAvailableVehicles(Session session) throws Exception;
+     int makeVehicleOn(int id,Session session) throws Exception;
 }

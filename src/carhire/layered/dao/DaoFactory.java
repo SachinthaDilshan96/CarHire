@@ -24,12 +24,14 @@ public class DaoFactory {
                 return new VehicleDaoImpl();
             case CUSTOMER:
                 return new CustomerDaoImpl();
+            case HIRE:
+                return new HireDaoImpl();
             default:
                 return null;
         }
     }
 
     public enum DaoTypes{
-        USER,VEHICLE_CATEGORY,VEHICLE_BRAND,VEHICLE,CUSTOMER
+        USER,VEHICLE_CATEGORY,VEHICLE_BRAND,VEHICLE,CUSTOMER,HIRE
     }
 }

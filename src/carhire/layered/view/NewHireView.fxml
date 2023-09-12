@@ -55,7 +55,7 @@
                </font>
             </Label>
             <TextField fx:id="txtMobile" layoutX="170.0" layoutY="173.0" prefHeight="26.0" prefWidth="210.0" promptText="Mobile" />
-            <Button layoutX="254.0" layoutY="209.0" mnemonicParsing="false" onAction="#AddCustomerOnAction" style="-fx-background-color: #f39c12;" text="Add Customer" textFill="WHITE">
+            <Button fx:id="btnAddCustomer" layoutX="254.0" layoutY="209.0" mnemonicParsing="false" onAction="#AddCustomerOnAction" style="-fx-background-color: #f39c12;" text="Add Customer" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
