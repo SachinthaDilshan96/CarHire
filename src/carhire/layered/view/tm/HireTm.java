@@ -1,19 +1,21 @@
-package carhire.layered.dto;
+package carhire.layered.view.tm;
+
 
 import lombok.*;
 
+import javax.persistence.Table;
 import java.sql.Date;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class HireDto {
+public class HireTm {
     private int hireId;
-    private VehicleDto vehicle;
-    private CustomerDto customer;
-    private UserDto orderPlacedBy;
+    private VehicleTm vehicle;
+    private CustomerTm customer;
+    private UserTm orderPlacedBy;
     private Date fromDate;
     private Date toDate;
     private String isReturned;

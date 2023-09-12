@@ -6,11 +6,12 @@ import carhire.layered.entity.HireEntity;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HireDaoImpl implements HireDao {
     @Override
-    public HireEntity get(String s, Session session) throws Exception {
-        return null;
+    public HireEntity get(Integer id, Session session) throws Exception {
+        return (HireEntity) CrudUtil.getUniqueResult("From HireEntity Where hireId=?1",session,id);
     }
 
     @Override
@@ -25,12 +26,17 @@ public class HireDaoImpl implements HireDao {
     }
 
     @Override
-    public int delete(String s, Session session) throws Exception {
+    public int delete(Integer id, Session session) throws Exception {
         return 0;
     }
 
     @Override
     public ArrayList<HireEntity> getAll(Session session) throws Exception {
-        return null;
+        List<Object> result = CrudUtil.getListResult("From HireEntity",session);
+        ArrayList<HireEntity> hireEntities = new ArrayList<>();
+        for (Object o:result){
+            hireEntities.add((HireEntity) o);
+        }
+        return hireEntities;
     }
 }

@@ -5,6 +5,7 @@ import carhire.layered.dto.Embedded.Name;
 import carhire.layered.dto.HireDto;
 import carhire.layered.dto.UserDto;
 import carhire.layered.dto.VehicleDto;
+import carhire.layered.entity.HireEntity;
 import carhire.layered.service.ServiceFactory;
 import carhire.layered.service.custom.CustomerService;
 import carhire.layered.service.custom.HireService;
@@ -218,14 +219,23 @@ public class NewHireViewController {
         }else {
             if(isFromDateValid() & isToDateValid(null) & isDepositValid() & isAdvanceValid() ){
               try{
+                  VehicleDto vehicleDto = new VehicleDto();
+                  vehicleDto.setVehicleId(Integer.parseInt(txtVehicleID.getText()));
+
+                  CustomerDto customerDto = new CustomerDto();
+                  customerDto.setCustomerId(Integer.parseInt(txtCustomerId.getText()));
+
+                  UserDto userDto = new UserDto();
+                  userDto.setId(Integer.parseInt(txtPlaceBy.getText()));
+
                   int i = hireService.addHire(new HireDto(
                           0,
-                          Integer.parseInt(txtVehicleID.getText()),
-                          Integer.parseInt(txtCustomerId.getText()),
-                          Integer.parseInt(txtPlaceBy.getText()),
+                          vehicleDto,
+                          customerDto,
+                          userDto,
                           Date.valueOf(fromDate.getValue()),
                           Date.valueOf(toDate.getValue()),
-                          false,
+                          "Not Returned",
                           Double.parseDouble(txtTotal.getText()),
                           Double.parseDouble(txtDailyRental.getText()),
                           Double.parseDouble(txtDeposit.getText()),
