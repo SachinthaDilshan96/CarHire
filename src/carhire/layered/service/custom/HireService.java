@@ -10,4 +10,6 @@ public interface HireService extends SuperService {
         int addHire(HireDto hireDto) throws Exception;
         HireDto getHire(int id) throws Exception;
         ArrayList<HireDto> getAllHires() throws Exception;
+        ArrayList<HireDto> getAllHiresToBeReturned() throws Exception;
+        int markAsReturned(HireDto hireDto) throws Exception;
 }

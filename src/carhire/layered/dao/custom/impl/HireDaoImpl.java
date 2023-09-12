@@ -16,7 +16,6 @@ public class HireDaoImpl implements HireDao {
 
     @Override
     public int add(HireEntity hireEntity, Session session) throws Exception {
-        System.out.println("Daily rental "+hireEntity.getDailyRental());
         return CrudUtil.save(hireEntity,session);
     }
 
@@ -38,5 +37,20 @@ public class HireDaoImpl implements HireDao {
             hireEntities.add((HireEntity) o);
         }
         return hireEntities;
+    }
+
+    @Override
+    public ArrayList<HireEntity> getAllHiresToBeReturned(Session session) throws Exception {
+        List<Object> result = CrudUtil.getListResult("From HireEntity Where isReturned=0",session);
+        ArrayList<HireEntity> hireEntities = new ArrayList<>();
+        for (Object o:result){
+            hireEntities.add((HireEntity) o);
+        }
+        return hireEntities;
+    }
+
+    @Override
+    public int markAsReturned(HireEntity hireEntity, Session session) throws Exception {
+        return CrudUtil.executeUpdate("Update HireEntity Set balance=0, isReturned=1 Where hireId=?1",session,hireEntity.getHireId());
     }
 }

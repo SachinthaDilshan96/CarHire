@@ -34,21 +34,23 @@ public class HireServiceImpl implements HireService {
         CustomerEntity customerEntity = customerDao.getByID(hireDto.getCustomer().getCustomerId(),session);
         UserEntity userEntity = userDao.getById(hireDto.getOrderPlacedBy().getId(), session);
         if (vehicleEntity!=null & customerEntity!=null & userEntity!=null){
-            Transaction transaction = session.beginTransaction();
+           // Transaction transaction = session.beginTransaction();
+
             HireEntity hireEntity = new HireEntity();
             hireEntity.setVehicleEntity(vehicleEntity);
             hireEntity.setCustomerEntity(customerEntity);
             hireEntity.setUserEntity(userEntity);
             hireEntity.setFromDate(hireDto.getFromDate());
             hireEntity.setToDate(hireDto.getToDate());
-            hireEntity.setReturned(hireDto.getIsReturned().equals("Not Returned")?false:true);
+            hireEntity.setReturned(false);
             hireEntity.setTotal(hireDto.getTotal());
             hireEntity.setDailyRental(hireDto.getDailyRental());
-            hireEntity.setAdvance(hireDto.getAdvance());
             hireEntity.setDeposit(hireDto.getDeposit());
+            hireEntity.setAdvance(hireDto.getAdvance());
             hireEntity.setBalance(hireDto.getBalance());
 
             int i = hireDao.add(hireEntity,session);
+            System.out.println("this is i "+i);
             if (i>=0){
                 hireEntity.setHireId(i);
                 boolean isVehicleUpdated = true;
@@ -60,17 +62,17 @@ public class HireServiceImpl implements HireService {
                     isVehicleUpdated = false;
                 }
                 if (isVehicleUpdated){
-                    transaction.commit();
-                    session.close();
+                   // transaction.commit();
+                   // session.close();
                     return 1;
                 }else {
-                    transaction.rollback();
-                    session.close();
+                   // transaction.rollback();
+                    //session.close();
                     return -1;
                 }
             }else {
-                transaction.rollback();
-                session.close();
+               // transaction.rollback();
+                //session.close();
                 return -1;
             }
         }else {
@@ -144,6 +146,48 @@ public class HireServiceImpl implements HireService {
             ));
         }
         return hireDtos;
+    }
+
+    @Override
+    public ArrayList<HireDto> getAllHiresToBeReturned() throws Exception {
+        ArrayList<HireEntity> hireEntities = hireDao.getAllHiresToBeReturned(session);
+        ArrayList<HireDto> hireDtos = new ArrayList<>();
+        for (HireEntity hireEntity:hireEntities){
+            VehicleDto vehicleDto = new VehicleDto();
+            vehicleDto.setVehicleId(hireEntity.getVehicleEntity().getVehicleId());
+            vehicleDto.setVehicleNumber(hireEntity.getVehicleEntity().getVehicleNumber());
+
+            CustomerDto customerDto = new CustomerDto();
+            customerDto.setCustomerId(hireEntity.getCustomerEntity().getCustomerid());
+            customerDto.setName(new Name(hireEntity.getCustomerEntity().getCustomerName().getFirstName(), hireEntity.getCustomerEntity().getCustomerName().getLastName()));
+
+            UserDto userDto = new UserDto();
+            userDto.setId(hireEntity.getUserEntity().getUserId());
+            userDto.setFirstName(hireEntity.getUserEntity().getFirstName());
+            userDto.setLastName(hireEntity.getUserEntity().getLastName());
+            hireDtos.add(new HireDto(
+                    hireEntity.getHireId(),
+                    vehicleDto,
+                    customerDto,
+                    userDto,
+                    hireEntity.getFromDate(),
+                    hireEntity.getToDate(),
+                    hireEntity.isReturned()?"Returned":"Not Returned",
+                    hireEntity.getTotal(),
+                    hireEntity.getDailyRental(),
+                    hireEntity.getDeposit(),
+                    hireEntity.getAdvance(),
+                    hireEntity.getBalance()
+            ));
+        }
+        return hireDtos;
+    }
+
+    @Override
+    public int markAsReturned(HireDto hireDto) throws Exception {
+        HireEntity hireEntity = new HireEntity();
+        hireEntity.setHireId(hireDto.getHireId());
+        return hireDao.markAsReturned(hireEntity,session);
     }
 
 

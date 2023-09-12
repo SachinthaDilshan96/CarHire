@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -16,8 +17,11 @@
          </font>
       </Label>
       <TextField id="txtHireId" fx:id="txtHireIdSearch" layoutX="361.0" layoutY="51.0" prefHeight="26.0" prefWidth="294.0" />
-      <Button layoutX="707.0" layoutY="51.0" mnemonicParsing="false" onAction="#SearchHireOnAction" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #2c3e50;" text="Search" textFill="WHITE" />
-      <Label layoutX="24.0" layoutY="207.0" text="Customer ">
+      <Button layoutX="707.0" layoutY="51.0" mnemonicParsing="false" onAction="#SearchHireOnAction" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #2c3e50;" text="Search" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="24.0" layoutY="213.0" text="Customer ">
          <font>
             <Font size="17.0" />
          </font>
@@ -47,13 +51,16 @@
          </font>
       </Label>
       <TextField fx:id="txtHirePlacedBy" editable="false" layoutX="139.0" layoutY="249.0" prefHeight="26.0" prefWidth="260.0" />
-      <Label layoutX="415.0" layoutY="177.0" text="Total">
+      <Label layoutX="413.0" layoutY="177.0" text="Total">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
       <TextField fx:id="txtTotal" editable="false" layoutX="573.0" layoutY="177.0" prefHeight="26.0" prefWidth="260.0" />
-      <TableView fx:id="tblHires" layoutX="41.0" layoutY="411.0" prefHeight="260.0" prefWidth="803.0">
+      <TableView fx:id="tblHires" layoutX="41.0" layoutY="422.0" prefHeight="260.0" prefWidth="803.0">
+         <placeholder>
+            <Label text="No Vehicles to handover" />
+         </placeholder>
          <columns>
             <TableColumn fx:id="colHireId" prefWidth="75.0" text="Hire Id" />
             <TableColumn fx:id="colVehicle" prefWidth="86.0" text="Vehicle" />
@@ -65,13 +72,13 @@
             <TableColumn fx:id="colBalance" prefWidth="145.0" text="Balance" />
          </columns>
       </TableView>
-      <Label layoutX="412.0" layoutY="216.0" text="Daily Rental">
+      <Label layoutX="413.0" layoutY="216.0" text="Daily Rental">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
       <TextField fx:id="txtDailyRental" editable="false" layoutX="572.0" layoutY="215.0" prefHeight="26.0" prefWidth="260.0" />
-      <Label layoutX="24.0" layoutY="174.0" text="Vehicle">
+      <Label layoutX="24.0" layoutY="177.0" text="Vehicle">
          <font>
             <Font size="17.0" />
          </font>
@@ -89,7 +96,7 @@
          </font>
       </Label>
       <TextField fx:id="txtAdvance" editable="false" layoutX="573.0" layoutY="289.0" prefHeight="26.0" prefWidth="260.0" />
-      <Label layoutX="413.0" layoutY="325.0" text="Balance">
+      <Label layoutX="414.0" layoutY="325.0" text="Balance">
          <font>
             <Font size="17.0" />
          </font>
@@ -101,5 +108,9 @@
          </font>
       </Label>
       <TextField fx:id="txtHireID" editable="false" layoutX="139.0" layoutY="137.0" prefHeight="26.0" prefWidth="260.0" />
+      <Button fx:id="btnMarkAsReturned" layoutX="668.0" layoutY="361.0" mnemonicParsing="false" onAction="#MarkAsReturnedOnAction" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #e74c3c;" text="Mark Vehicle as Returned" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>
