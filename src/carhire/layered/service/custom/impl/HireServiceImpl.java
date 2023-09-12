@@ -30,29 +30,25 @@ public class HireServiceImpl implements HireService {
     Session session  = SessionFactoryConfiguration.getInstance().getSession();
     @Override
     public int addHire(HireDto hireDto) throws Exception {
-       /* VehicleEntity vehicleEntity = vehicleDao.getVehicleByID(hireDto.getVehicleId(),session);
-        CustomerEntity customerEntity = customerDao.getByID(hireDto.getCustomerId(),session);
-        UserEntity userEntity = userDao.getById(hireDto.getOrderPlacedBy(),session);
+        VehicleEntity vehicleEntity = vehicleDao.getVehicleByID(hireDto.getVehicle().getVehicleId(),session);
+        CustomerEntity customerEntity = customerDao.getByID(hireDto.getCustomer().getCustomerId(),session);
+        UserEntity userEntity = userDao.getById(hireDto.getOrderPlacedBy().getId(), session);
         if (vehicleEntity!=null & customerEntity!=null & userEntity!=null){
-            System.out.println("Beofre the transaction");
             Transaction transaction = session.beginTransaction();
-            System.out.println("after the transaction"+transaction.getStatus());
             HireEntity hireEntity = new HireEntity();
             hireEntity.setVehicleEntity(vehicleEntity);
             hireEntity.setCustomerEntity(customerEntity);
             hireEntity.setUserEntity(userEntity);
             hireEntity.setFromDate(hireDto.getFromDate());
             hireEntity.setToDate(hireDto.getToDate());
-            hireEntity.setReturned(false);
+            hireEntity.setReturned(hireDto.getIsReturned().equals("Not Returned")?false:true);
             hireEntity.setTotal(hireDto.getTotal());
             hireEntity.setDailyRental(hireDto.getDailyRental());
             hireEntity.setAdvance(hireDto.getAdvance());
             hireEntity.setDeposit(hireDto.getDeposit());
             hireEntity.setBalance(hireDto.getBalance());
 
-            System.out.println("before the add"+hireEntity.getHireId());
             int i = hireDao.add(hireEntity,session);
-            System.out.println("after add "+i+"");
             if (i>=0){
                 hireEntity.setHireId(i);
                 boolean isVehicleUpdated = true;
@@ -79,8 +75,7 @@ public class HireServiceImpl implements HireService {
             }
         }else {
             return -1;
-        }*/
-        return 1;
+        }
     }
 
     @Override

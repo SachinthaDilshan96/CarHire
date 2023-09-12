@@ -38,22 +38,40 @@ public class HireSectionViewController {
     }
 
     public void VewCustomerOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnViewCustomers.setStyle("-fx-background-color: #c0392b");
         loadView("CustomerView");
     }
 
     public void NewHireOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnNewHire.setStyle("-fx-background-color: #c0392b");
         loadView("NewHireView");
     }
 
     public void ViewHiresOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnViewHires.setStyle("-fx-background-color: #c0392b");
         loadView("HiresView");
     }
 
     public void HandOverOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnHandOver.setStyle("-fx-background-color: #c0392b");
         loadView("ReturnVehicleView");
     }
 
     public void OverDueHiresOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnOverDueHires.setStyle("-fx-background-color: #c0392b");
         loadView("OverdueVehiclesView");
+    }
+
+    private void clearSelectedButtonStyle(){
+        btnViewCustomers.setStyle("-fx-background-color: #3498db");
+        btnNewHire.setStyle("-fx-background-color: #3498db");
+        btnViewHires.setStyle("-fx-background-color: #3498db");
+        btnHandOver.setStyle("-fx-background-color: #3498db");
+        btnOverDueHires.setStyle("-fx-background-color: #3498db");
     }
 }

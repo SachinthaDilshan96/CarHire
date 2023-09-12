@@ -62,16 +62,13 @@ public class DashboardViewController {
         timeThread.start();
     }
 
+
     public void AddNewUserOnAction(ActionEvent actionEvent) throws IOException {
        setUi("AddNewUserView");
     }
 
     public void UsersOnAction(ActionEvent actionEvent) throws IOException {
         setUi("UserView");
-    }
-
-    public void CustomersOnAction(ActionEvent actionEvent) throws IOException {
-        setUi("CustomerView");
     }
 
     public void HiresOnAction(ActionEvent actionEvent) throws IOException {

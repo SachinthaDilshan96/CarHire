@@ -39,18 +39,26 @@ public class VehicleSectionViewController {
     }
 
     public void VehicleCategoryOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnVehicleCategory.setStyle("-fx-background-color: #c0392b");
         loadView("VehicleCategoryView");
     }
 
     public void VehicleBrandOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnVehicleBrands.setStyle("-fx-background-color: #c0392b");
         loadView("VehicleBrandView");
     }
 
     public void AvailableVehiclesOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnAvailableVehicles.setStyle("-fx-background-color: #c0392b");
            loadView("AvailableVehicleView");
     }
 
     public void VehicleOnAction(ActionEvent actionEvent) throws IOException {
+        clearSelectedButtonStyle();
+        btnVehicles.setStyle("-fx-background-color: #c0392b");
           loadView("VehicleView");
     }
 
@@ -58,5 +66,12 @@ public class VehicleSectionViewController {
         Parent root = FXMLLoader.load(this.getClass().getResource("../view/"+path+".fxml"));
         this.anchorPaneStage.getChildren().clear();
         this.anchorPaneStage.getChildren().add(root);
+    }
+
+    private void clearSelectedButtonStyle(){
+        btnAvailableVehicles.setStyle("-fx-background-color: #3498db");
+        btnVehicles.setStyle("-fx-background-color: #3498db");
+        btnVehicleBrands.setStyle("-fx-background-color: #3498db");
+        btnVehicleCategory.setStyle("-fx-background-color: #3498db");
     }
 }
