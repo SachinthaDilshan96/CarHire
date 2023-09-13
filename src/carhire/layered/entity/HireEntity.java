@@ -11,7 +11,7 @@ import java.sql.Date;
 @Setter
 @ToString
 @Entity
-@Table(name = "Hire")
+@Table(name = "hire")
 public class HireEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

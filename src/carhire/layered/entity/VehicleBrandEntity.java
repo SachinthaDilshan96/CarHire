@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "VehicleBrand")
+@Table(name = "vehiclebrand")
 public class VehicleBrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
