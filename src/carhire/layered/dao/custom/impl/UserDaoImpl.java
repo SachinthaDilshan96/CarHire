@@ -5,6 +5,7 @@ import carhire.layered.dao.custom.UserDao;
 import carhire.layered.dto.UserDto;
 import carhire.layered.entity.UserEntity;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,15 +27,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int add(UserEntity userEntity, Session session) throws Exception {
-        return CrudUtil.save(userEntity,session);
+    public int add(UserEntity userEntity, Session session,Transaction transaction) throws Exception {
+        return CrudUtil.save(userEntity,session,transaction);
     }
 
     @Override
-    public int update(UserEntity userEntity, Session session) throws Exception {
+    public int update(UserEntity userEntity, Session session,Transaction transaction) throws Exception {
         return CrudUtil.executeUpdate(
                 "update UserEntity set firstName=?1, lastName=?2,level=?3,status=?4 where userId=?5",
                 session,
+                transaction,
                 userEntity.getFirstName(),userEntity.getLastName(),userEntity.getLevel(),userEntity.getStatus(),userEntity.getUserId());
     }
 
@@ -44,10 +46,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int delete(int id , Session session) throws Exception {
+    public int delete(int id , Session session,Transaction transaction) throws Exception {
         return CrudUtil.executeUpdate(
                 "update UserEntity set status=?1 where userId=?2",
                 session,
+                transaction,
                 "out",id);
     }
 
@@ -63,11 +66,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int updateProfile(UserEntity userEntity, Session session) throws Exception {
+    public int updateProfile(UserEntity userEntity, Session session, Transaction transaction) throws Exception {
         //return CrudUtil.updateProfile("",userEntity,session);
         return CrudUtil.executeUpdate(
                 "update UserEntity set firstName=?1, lastName=?2, password=?3 where userId=?4",
                 session,
+                transaction,
                 userEntity.getFirstName(),userEntity.getLastName(),userEntity.getPassword(),userEntity.getUserId());
     }
 

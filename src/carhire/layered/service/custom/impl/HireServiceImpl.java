@@ -29,6 +29,7 @@ public class HireServiceImpl implements HireService {
     CustomerDao customerDao = (CustomerDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.CUSTOMER);
     UserDao userDao = (UserDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.USER);
     Session session  = SessionFactoryConfiguration.getInstance().getSession();
+    Transaction transaction = session.beginTransaction();
     @Override
     public int addHire(HireDto hireDto) throws Exception {
         VehicleEntity vehicleEntity = vehicleDao.getVehicleByID(hireDto.getVehicle().getVehicleId(),session);
@@ -50,7 +51,7 @@ public class HireServiceImpl implements HireService {
             hireEntity.setAdvance(hireDto.getAdvance());
             hireEntity.setBalance(hireDto.getBalance());
 
-            int i = hireDao.add(hireEntity,session);
+            int i = hireDao.add(hireEntity,session,transaction);
             System.out.println("this is i "+i);
             if (i>=0){
                 hireEntity.setHireId(i);
@@ -58,7 +59,7 @@ public class HireServiceImpl implements HireService {
                 List<HireEntity> hireEntities = vehicleEntity.getHireEntities();
                 hireEntities.add(hireEntity);
                 vehicleEntity.setHireEntities(hireEntities);
-                int makeVehicleOnResult =vehicleDao.makeVehicleOn(vehicleEntity.getVehicleId(),session);
+                int makeVehicleOnResult =vehicleDao.makeVehicleOn(vehicleEntity.getVehicleId(),session,transaction);
                 if (makeVehicleOnResult<0){
                     isVehicleUpdated = false;
                 }
@@ -224,7 +225,9 @@ public class HireServiceImpl implements HireService {
     public int markAsReturned(HireDto hireDto) throws Exception {
         HireEntity hireEntity = new HireEntity();
         hireEntity.setHireId(hireDto.getHireId());
-        return hireDao.markAsReturned(hireEntity,session);
+        hireEntity.setTotal(hireDto.getTotal());
+        hireEntity.setBalance(hireDto.getBalance());
+        return hireDao.markAsReturned(hireEntity,session,transaction);
     }
 
 

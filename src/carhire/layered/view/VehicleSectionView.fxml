@@ -48,13 +48,6 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="btnAvailableVehicles" layoutX="17.0" layoutY="270.0" mnemonicParsing="false" onAction="#AvailableVehiclesOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="Available Vehicles" textFill="#fcfcfc">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
          </children>
       </AnchorPane>
    </children>

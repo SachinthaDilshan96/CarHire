@@ -3,6 +3,7 @@ package carhire.layered.service.custom;
 import carhire.layered.dto.HireDto;
 import carhire.layered.entity.HireEntity;
 import carhire.layered.service.SuperService;
+import org.hibernate.Transaction;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

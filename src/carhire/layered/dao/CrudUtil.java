@@ -20,9 +20,8 @@ public class CrudUtil {
         return q;
     }
 
-    public static int executeUpdate(String sql,Session session, Object...args){
+    public static int executeUpdate(String sql,Session session,Transaction transaction, Object...args){
         Query query = getQuery(sql,session,args);
-        Transaction transaction = session.beginTransaction();
         try{
             int i = query.executeUpdate();
             transaction.commit();
@@ -43,8 +42,7 @@ public class CrudUtil {
         return query.list();
     }
 
-    public static int save(Object object,Session session){
-        Transaction transaction = session.beginTransaction();
+    public static int save(Object object,Session session, Transaction transaction){
         try {
             int i = (int)session.save(object);
             transaction.commit();

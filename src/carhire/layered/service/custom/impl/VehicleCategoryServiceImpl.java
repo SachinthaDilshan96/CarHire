@@ -7,11 +7,14 @@ import carhire.layered.entity.VehicleCategoryEntity;
 import carhire.layered.service.custom.VehicleCategoryService;
 import carhire.layered.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import java.util.ArrayList;
 
 public class VehicleCategoryServiceImpl implements VehicleCategoryService {
     VehicleCategoryDao vehicleCategoryDao =(VehicleCategoryDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.VEHICLE_CATEGORY);
     Session session = SessionFactoryConfiguration.getInstance().getSession();
+    Transaction transaction = session.beginTransaction();
 
     @Override
     public VehicleCategoryDto getVehicleCategory(String vehicleCategory) throws Exception {
@@ -25,12 +28,12 @@ public class VehicleCategoryServiceImpl implements VehicleCategoryService {
 
     @Override
     public int addVehicleCategory(VehicleCategoryDto vehicleCategoryDto) throws Exception {
-        return vehicleCategoryDao.add(new VehicleCategoryEntity(0,vehicleCategoryDto.getVehicleCategory()),session);
+        return vehicleCategoryDao.add(new VehicleCategoryEntity(0,vehicleCategoryDto.getVehicleCategory()),session,transaction);
     }
 
     @Override
     public int updateVehicleCategory(VehicleCategoryDto vehicleCategoryDto) throws Exception {
-        return vehicleCategoryDao.update(new VehicleCategoryEntity(vehicleCategoryDto.getId(),vehicleCategoryDto.getVehicleCategory()),session);
+        return vehicleCategoryDao.update(new VehicleCategoryEntity(vehicleCategoryDto.getId(),vehicleCategoryDto.getVehicleCategory()),session,transaction);
     }
 
     @Override

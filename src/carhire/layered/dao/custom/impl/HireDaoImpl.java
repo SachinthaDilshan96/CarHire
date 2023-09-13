@@ -4,6 +4,7 @@ import carhire.layered.dao.CrudUtil;
 import carhire.layered.dao.custom.HireDao;
 import carhire.layered.entity.HireEntity;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -17,12 +18,12 @@ public class HireDaoImpl implements HireDao {
     }
 
     @Override
-    public int add(HireEntity hireEntity, Session session) throws Exception {
-        return CrudUtil.save(hireEntity,session);
+    public int add(HireEntity hireEntity, Session session, Transaction transaction) throws Exception {
+        return CrudUtil.save(hireEntity,session,transaction);
     }
 
     @Override
-    public int update(HireEntity hireEntity, Session session) throws Exception {
+    public int update(HireEntity hireEntity, Session session,Transaction transaction) throws Exception {
         return 0;
     }
 
@@ -52,8 +53,8 @@ public class HireDaoImpl implements HireDao {
     }
 
     @Override
-    public int markAsReturned(HireEntity hireEntity, Session session) throws Exception {
-        return CrudUtil.executeUpdate("Update HireEntity Set balance=0, isReturned=1 Where hireId=?1",session,hireEntity.getHireId());
+    public int markAsReturned(HireEntity hireEntity, Session session,Transaction transaction) throws Exception {
+        return CrudUtil.executeUpdate("Update HireEntity Set balance=0, isReturned=1 Where hireId=?1",session,transaction,hireEntity.getHireId());
     }
 
     @Override

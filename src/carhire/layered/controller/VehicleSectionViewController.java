@@ -50,12 +50,6 @@ public class VehicleSectionViewController {
         loadView("VehicleBrandView");
     }
 
-    public void AvailableVehiclesOnAction(ActionEvent actionEvent) throws IOException {
-        clearSelectedButtonStyle();
-        btnAvailableVehicles.setStyle("-fx-background-color: #c0392b");
-           loadView("AvailableVehicleView");
-    }
-
     public void VehicleOnAction(ActionEvent actionEvent) throws IOException {
         clearSelectedButtonStyle();
         btnVehicles.setStyle("-fx-background-color: #c0392b");
@@ -69,7 +63,6 @@ public class VehicleSectionViewController {
     }
 
     private void clearSelectedButtonStyle(){
-        btnAvailableVehicles.setStyle("-fx-background-color: #3498db");
         btnVehicles.setStyle("-fx-background-color: #3498db");
         btnVehicleBrands.setStyle("-fx-background-color: #3498db");
         btnVehicleCategory.setStyle("-fx-background-color: #3498db");

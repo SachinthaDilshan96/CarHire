@@ -190,6 +190,8 @@ public class ReturnVehicleViewController {
                                             response3->{
                                                 HireDto hireDto = new HireDto();
                                                 hireDto.setHireId(Integer.parseInt(txtHireID.getText()));
+                                                hireDto.setTotal(Double.parseDouble(txtTotal.getText()));
+                                                hireDto.setBalance(0);
                                                 try {
                                                     hireService.markAsReturned(hireDto);
                                                     new Alert(Alert.AlertType.INFORMATION,"Hire marked as Returned").show();

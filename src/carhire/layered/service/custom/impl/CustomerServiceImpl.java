@@ -9,12 +9,14 @@ import carhire.layered.entity.embeddeb.CustomerName;
 import carhire.layered.service.custom.CustomerService;
 import carhire.layered.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
 public class CustomerServiceImpl implements CustomerService {
     CustomerDao customerDao = (CustomerDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.CUSTOMER);
     Session session = SessionFactoryConfiguration.getInstance().getSession();
+    Transaction transaction = session.beginTransaction();
     @Override
     public int addCustomer(CustomerDto customerDto) throws Exception {
         return customerDao.add(new CustomerEntity(
@@ -22,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customerDto.getNic(),
                 new CustomerName(customerDto.getName().getFirstName(),customerDto.getName().getLastName()),
                 customerDto.getAddress(),
-                customerDto.getMobileNumber()),session);
+                customerDto.getMobileNumber()),session,transaction);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customerDto.getNic(),
                 new CustomerName(customerDto.getName().getFirstName(),customerDto.getName().getLastName()),
                 customerDto.getAddress(),
-                customerDto.getMobileNumber()),session);
+                customerDto.getMobileNumber()),session,transaction);
     }
 
     @Override

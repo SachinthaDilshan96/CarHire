@@ -11,12 +11,14 @@ import carhire.layered.entity.VehicleEntity;
 import carhire.layered.service.custom.VehicleService;
 import carhire.layered.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
 public class VehicleServiceImpl implements VehicleService {
     VehicleDao vehicleDao= (VehicleDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.VEHICLE);
     Session session = SessionFactoryConfiguration.getInstance().getSession();
+    Transaction transaction = session.beginTransaction();
     @Override
     public int addVehicle(VehicleDto vehicleDto) throws Exception {
         return vehicleDao.add(new VehicleEntity(
@@ -29,7 +31,7 @@ public class VehicleServiceImpl implements VehicleService {
                 vehicleDto.getTransmission(),
                 vehicleDto.getNoOfSeats(),
                 vehicleDto.getDailyRental(),
-                vehicleDto.getStatus()),session);
+                vehicleDto.getStatus()),session,transaction);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class VehicleServiceImpl implements VehicleService {
                 vehicleDto.getTransmission(),
                 vehicleDto.getNoOfSeats(),
                 vehicleDto.getDailyRental(),
-                vehicleDto.getStatus()),session);
+                vehicleDto.getStatus()),session,transaction);
     }
 
     @Override
@@ -65,7 +67,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public int deleteVehicle(int vehicleID) throws Exception {
-        return vehicleDao.delete(vehicleID,session);
+        return vehicleDao.delete(vehicleID,session,transaction);
     }
 
     @Override
@@ -107,7 +109,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public int makeVehicleIn(int vehicleId) throws Exception {
-        return vehicleDao.makeVehicleIn(vehicleId,session);
+        return vehicleDao.makeVehicleIn(vehicleId,session,transaction);
     }
 
     @Override

@@ -4,6 +4,7 @@ import carhire.layered.dao.CrudUtil;
 import carhire.layered.dao.custom.CustomerDao;
 import carhire.layered.entity.CustomerEntity;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +17,13 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public int add(CustomerEntity customerEntity, Session session) throws Exception {
-        return CrudUtil.save(customerEntity,session);
+    public int add(CustomerEntity customerEntity, Session session, Transaction transaction) throws Exception {
+        return CrudUtil.save(customerEntity,session,transaction);
     }
 
     @Override
-    public int update(CustomerEntity customerEntity, Session session) throws Exception {
-        return CrudUtil.executeUpdate("Update CustomerEntity set customerName=?1,address=?2,mobile=?3 Where customerid=?4",session,
+    public int update(CustomerEntity customerEntity, Session session,Transaction transaction) throws Exception {
+        return CrudUtil.executeUpdate("Update CustomerEntity set customerName=?1,address=?2,mobile=?3 Where customerid=?4",session,transaction,
                 customerEntity.getCustomerName(),customerEntity.getAddress(),customerEntity.getMobile(),customerEntity.getCustomerid());
     }
 

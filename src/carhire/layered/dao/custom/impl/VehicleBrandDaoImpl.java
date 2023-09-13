@@ -4,7 +4,9 @@ import carhire.layered.dao.CrudUtil;
 import carhire.layered.dao.custom.VehicleBrandDao;
 import carhire.layered.entity.VehicleBrandEntity;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +23,16 @@ public class VehicleBrandDaoImpl implements VehicleBrandDao {
     }
 
     @Override
-    public int add(VehicleBrandEntity vehicleBrand, Session session) throws Exception {
-        return CrudUtil.save(vehicleBrand,session);
+    public int add(VehicleBrandEntity vehicleBrand, Session session, Transaction transaction) throws Exception {
+        return CrudUtil.save(vehicleBrand,session,transaction);
     }
 
     @Override
-    public int update(VehicleBrandEntity vehicleBrand, Session session) throws Exception {
+    public int update(VehicleBrandEntity vehicleBrand, Session session,Transaction transaction) throws Exception {
         return CrudUtil.executeUpdate(
                 "update VehicleBrandEntity set vehicleBrand=?1 where id=?2",
                 session,
+                transaction,
                 vehicleBrand.getVehicleBrand(),vehicleBrand.getId());
     }
 

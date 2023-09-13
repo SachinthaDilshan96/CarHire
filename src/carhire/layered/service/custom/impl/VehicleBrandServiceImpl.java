@@ -8,12 +8,14 @@ import carhire.layered.service.ServiceFactory;
 import carhire.layered.service.custom.VehicleBrandService;
 import carhire.layered.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
 public class VehicleBrandServiceImpl implements VehicleBrandService {
     Session session = SessionFactoryConfiguration.getInstance().getSession();
     VehicleBrandDao vehicleBrandDao = (VehicleBrandDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.VEHICLE_BRAND);
+    Transaction transaction = session.beginTransaction();
     @Override
     public VehicleBrandDto getVehicleBrand(String brand) throws Exception {
         VehicleBrandEntity vehicleBrandEntity = vehicleBrandDao.get(brand,session);
@@ -25,14 +27,14 @@ public class VehicleBrandServiceImpl implements VehicleBrandService {
     public int addVehicleBrand(VehicleBrandDto vehicleBrandDto) throws Exception {
         return vehicleBrandDao.add(
                 new VehicleBrandEntity(vehicleBrandDto.getId(), vehicleBrandDto.getVehicleBrand()),
-                session);
+                session,transaction);
     }
 
     @Override
     public int updateVehicleBrand(VehicleBrandDto vehicleBrandDto) throws Exception {
         return vehicleBrandDao.update(
                 new VehicleBrandEntity(vehicleBrandDto.getId(), vehicleBrandDto.getVehicleBrand()),
-                session);
+                session,transaction);
     }
 
     @Override

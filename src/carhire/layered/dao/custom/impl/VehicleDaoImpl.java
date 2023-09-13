@@ -4,6 +4,7 @@ import carhire.layered.dao.CrudUtil;
 import carhire.layered.dao.custom.VehicleDao;
 import carhire.layered.entity.VehicleEntity;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +17,15 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public int add(VehicleEntity vehicleEntity, Session session) throws Exception {
-        return CrudUtil.save(vehicleEntity,session);
+    public int add(VehicleEntity vehicleEntity, Session session,Transaction transaction) throws Exception {
+        return CrudUtil.save(vehicleEntity,session,transaction);
     }
 
     @Override
-    public int update(VehicleEntity vehicleEntity, Session session) throws Exception {
+    public int update(VehicleEntity vehicleEntity, Session session,Transaction transaction) throws Exception {
         return CrudUtil.executeUpdate("Update VehicleEntity set " +
                 "VehicleNumber=?1,Brand=?2,Year=?3,Model=?4,VehicleType=?5,Transmission=?6,NoOfSeats=?7,DailyRental=?8 Where VehicleID=?9",
-                session,
+                session,transaction,
                 vehicleEntity.getVehicleNumber(),
                 vehicleEntity.getVehicleBrandEntity().getId(),
                 vehicleEntity.getYear(),
@@ -42,8 +43,8 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public int delete(Integer id, Session session) throws Exception {
-        return CrudUtil.executeUpdate("Update VehicleEntity set status='Out' where VehicleID=?1",session,id);
+    public int delete(Integer id, Session session,Transaction transaction) throws Exception {
+        return CrudUtil.executeUpdate("Update VehicleEntity set status='Out' where VehicleID=?1",session,transaction,id);
     }
 
     @Override
@@ -63,8 +64,8 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public int makeVehicleIn(int id, Session session) throws Exception {
-        return CrudUtil.executeUpdate("Update VehicleEntity Set status='In' where VehicleID=?1",session,id);
+    public int makeVehicleIn(int id, Session session, Transaction transaction) throws Exception {
+        return CrudUtil.executeUpdate("Update VehicleEntity Set status='In' where VehicleID=?1",session,transaction,id);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class VehicleDaoImpl implements VehicleDao {
     }
 
     @Override
-    public int makeVehicleOn(int id,Session session) throws Exception {
-        return CrudUtil.executeUpdate("Update VehicleEntity Set status='On' where VehicleID=?1",session,id);
+    public int makeVehicleOn(int id,Session session,Transaction transaction) throws Exception {
+        return CrudUtil.executeUpdate("Update VehicleEntity Set status='On' where VehicleID=?1",session,transaction,id);
     }
 }

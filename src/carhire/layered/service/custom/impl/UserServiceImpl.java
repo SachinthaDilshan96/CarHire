@@ -7,6 +7,7 @@ import carhire.layered.entity.UserEntity;
 import carhire.layered.service.custom.UserService;
 import carhire.layered.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     UserDao userDao = (UserDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.USER);
     Session session = SessionFactoryConfiguration.getInstance().getSession();
+    Transaction transaction = session.beginTransaction();
     @Override
     public UserDto getUser(String id,boolean isAll) throws Exception {
         UserEntity userEntity = userDao.get(id,session,isAll);
@@ -42,7 +44,7 @@ public class UserServiceImpl implements UserService {
                 userDto.getPassword(),
                 userDto.getLevel(),
                 userDto.getStatus());
-        int i = userDao.add(userEntity,session);
+        int i = userDao.add(userEntity,session,transaction);
         return i;
     }
 
@@ -57,7 +59,7 @@ public class UserServiceImpl implements UserService {
                 userDto.getLevel(),
                 userDto.getStatus()
         );
-        int i = userDao.update(userEntity,session);
+        int i = userDao.update(userEntity,session,transaction);
         return i;
     }
 
@@ -80,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int deleteUser(int id) throws Exception {
-        int i = userDao.delete(id,session);
+        int i = userDao.delete(id,session,transaction);
         return i;
     }
 
@@ -93,7 +95,7 @@ public class UserServiceImpl implements UserService {
                 userDto.getEmail(),
                 userDto.getPassword(),
                 userDto.getLevel(),
-                userDto.getStatus()),session);
+                userDto.getStatus()),session,transaction);
     }
 
 

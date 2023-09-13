@@ -4,6 +4,8 @@ import carhire.layered.dao.CrudUtil;
 import carhire.layered.dao.custom.VehicleCategoryDao;
 import carhire.layered.entity.VehicleCategoryEntity;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +18,14 @@ public class VehicleCategoryDaoImpl implements VehicleCategoryDao {
     }
 
     @Override
-    public int add(VehicleCategoryEntity vehicleCategoryEntity, Session session) throws Exception {
-        return CrudUtil.save(vehicleCategoryEntity,session);
+    public int add(VehicleCategoryEntity vehicleCategoryEntity, Session session, Transaction transaction) throws Exception {
+        return CrudUtil.save(vehicleCategoryEntity,session, transaction);
     }
 
     @Override
-    public int update(VehicleCategoryEntity vehicleCategoryEntity , Session session) throws Exception {
+    public int update(VehicleCategoryEntity vehicleCategoryEntity , Session session,Transaction transaction) throws Exception {
         return CrudUtil.executeUpdate("UPDATE VehicleCategoryEntity set vehicleCategory=?1 where categoryID=?2",
-                session,vehicleCategoryEntity.getVehicleCategory(),vehicleCategoryEntity.getCategoryID());
+                session,transaction,vehicleCategoryEntity.getVehicleCategory(),vehicleCategoryEntity.getCategoryID());
     }
 
     @Override
