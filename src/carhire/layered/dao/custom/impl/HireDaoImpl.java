@@ -66,4 +66,8 @@ public class HireDaoImpl implements HireDao {
         }
         return hireEntities;
     }
+
+    public int save(HireEntity hireEntity,Session session) throws Exception{
+        return (int)session.save(hireEntity);
+    }
 }

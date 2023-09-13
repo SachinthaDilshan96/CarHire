@@ -12,4 +12,5 @@ public interface HireDao extends CrudDao<HireEntity,Integer, Session, Transactio
         ArrayList<HireEntity> getAllHiresToBeReturned(Session session) throws Exception;
         int markAsReturned(HireEntity hireEntity, Session session,Transaction transaction)throws Exception;
         ArrayList<HireEntity> getAllOverDueHires(Session session, LocalDate localDate) throws Exception;
+        int save(HireEntity hireEntity,Session session) throws Exception;
 }

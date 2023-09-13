@@ -64,16 +64,16 @@ public class HireServiceImpl implements HireService {
                     isVehicleUpdated = false;
                 }
                 if (isVehicleUpdated){
-                   // transaction.commit();
+                    transaction.commit();
                    // session.close();
                     return 1;
                 }else {
-                   // transaction.rollback();
+                    transaction.rollback();
                     //session.close();
                     return -1;
                 }
             }else {
-               // transaction.rollback();
+                transaction.rollback();
                 //session.close();
                 return -1;
             }
