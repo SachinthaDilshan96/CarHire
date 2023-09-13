@@ -20,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class HiresViewController {
@@ -50,6 +51,7 @@ public class HiresViewController {
     public TextField txtBalance;
     public Label txtVehicleId;
     public TextField txtHireID;
+    public ComboBox comboHireFilter;
 
     HireService hireService = (HireService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.HIRE);
 
@@ -63,12 +65,71 @@ public class HiresViewController {
         colIsReturned.setCellValueFactory(new PropertyValueFactory<HireTm,Integer>("isReturned"));
         colBalance.setCellValueFactory(new PropertyValueFactory<HireTm,Integer>("balance"));
 
+        comboHireFilter.setItems(FXCollections.observableArrayList(new String[]{"All Vehicles", "Overdue Vehicles"}));
+        comboHireFilter.getSelectionModel().select(0);
+        comboHireFilter.setOnAction((event -> {
+            loadData(comboHireFilter.getSelectionModel().getSelectedIndex());
+        }));
         loadAllHires();
 
         tblHires.getSelectionModel().selectedItemProperty().addListener((
                 (observable, oldValue, newValue) ->{
                     if (newValue!=null)setData((HireTm) newValue);
                 } ));
+    }
+
+    private void loadData(int selectedIndex) {
+        switch (selectedIndex){
+            case 0:
+                tblHires.getItems().clear();
+                loadAllHires();
+                break;
+            case 1:
+                tblHires.getItems().clear();
+                loadOverDueHires();
+                break;
+        }
+    }
+
+    private void loadOverDueHires() {
+        ObservableList<HireTm> hireTms = null;
+        try{
+            ArrayList<HireDto> hireDtos = hireService.getAllOverdueHires(LocalDate.now());
+            hireTms = FXCollections.observableArrayList();
+            if (hireDtos.size()>0){
+                for (HireDto hireDto:hireDtos){
+                    VehicleTm vehicleTm = new VehicleTm();
+                    vehicleTm.setVehicleId(hireDto.getVehicle().getVehicleId());
+                    vehicleTm.setVehicleNumber(hireDto.getVehicle().getVehicleNumber());
+
+                    CustomerTm customerTm = new CustomerTm();
+                    customerTm.setCustomerId(hireDto.getCustomer().getCustomerId());
+                    customerTm.setFirstName(hireDto.getCustomer().getName().getFirstName());
+
+                    UserTm userTm = new UserTm();
+                    userTm.setId(hireDto.getOrderPlacedBy().getId());
+                    userTm.setFirstName(hireDto.getOrderPlacedBy().getFirstName());
+
+                    hireTms.add(new HireTm(
+                            hireDto.getHireId(),
+                            vehicleTm,
+                            customerTm,
+                            userTm,
+                            hireDto.getFromDate(),
+                            hireDto.getToDate(),
+                            hireDto.getIsReturned(),
+                            hireDto.getTotal(),
+                            hireDto.getDailyRental(),
+                            hireDto.getDeposit(),
+                            hireDto.getAdvance(),
+                            hireDto.getBalance()
+                    ));
+                }
+            }
+            tblHires.setItems(hireTms);
+        }catch (Exception e){
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     private void setData(HireTm hireTm){

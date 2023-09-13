@@ -19,6 +19,7 @@ import carhire.layered.util.SessionFactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,6 +147,42 @@ public class HireServiceImpl implements HireService {
             ));
         }
         return hireDtos;
+    }
+
+    @Override
+    public ArrayList<HireDto> getAllOverdueHires(LocalDate localDate) throws Exception {
+        ArrayList<HireEntity> hireEntities = hireDao.getAllOverDueHires(session, localDate);
+        ArrayList<HireDto> hireDtos = new ArrayList<>();
+        for (HireEntity hireEntity:hireEntities){
+            VehicleDto vehicleDto = new VehicleDto();
+            vehicleDto.setVehicleId(hireEntity.getVehicleEntity().getVehicleId());
+            vehicleDto.setVehicleNumber(hireEntity.getVehicleEntity().getVehicleNumber());
+
+            CustomerDto customerDto = new CustomerDto();
+            customerDto.setCustomerId(hireEntity.getCustomerEntity().getCustomerid());
+            customerDto.setName(new Name(hireEntity.getCustomerEntity().getCustomerName().getFirstName(), hireEntity.getCustomerEntity().getCustomerName().getLastName()));
+
+            UserDto userDto = new UserDto();
+            userDto.setId(hireEntity.getUserEntity().getUserId());
+            userDto.setFirstName(hireEntity.getUserEntity().getFirstName());
+            userDto.setLastName(hireEntity.getUserEntity().getLastName());
+            hireDtos.add(new HireDto(
+                    hireEntity.getHireId(),
+                    vehicleDto,
+                    customerDto,
+                    userDto,
+                    hireEntity.getFromDate(),
+                    hireEntity.getToDate(),
+                    hireEntity.isReturned()?"Returned":"Not Returned",
+                    hireEntity.getTotal(),
+                    hireEntity.getDailyRental(),
+                    hireEntity.getDeposit(),
+                    hireEntity.getAdvance(),
+                    hireEntity.getBalance()
+            ));
+        }
+        return hireDtos;
+
     }
 
     @Override

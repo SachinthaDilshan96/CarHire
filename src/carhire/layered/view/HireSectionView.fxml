@@ -60,14 +60,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnOverDueHires" layoutX="11.0" layoutY="340.0" mnemonicParsing="false" onAction="#OverDueHiresOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #3498db;" text="OverDue Hires" textFill="#fcfcfc">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </children>
       </AnchorPane>
    </children>

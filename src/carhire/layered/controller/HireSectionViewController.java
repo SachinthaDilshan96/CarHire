@@ -17,7 +17,6 @@ public class HireSectionViewController {
     public Button btnNewHire;
     public Button btnViewHires;
     public Button btnHandOver;
-    public Button btnOverDueHires;
 
     private void setUi(String url) throws IOException {
         Stage stage = (Stage) homeSectionContextPane.getScene().getWindow();
@@ -61,17 +60,11 @@ public class HireSectionViewController {
         loadView("ReturnVehicleView");
     }
 
-    public void OverDueHiresOnAction(ActionEvent actionEvent) throws IOException {
-        clearSelectedButtonStyle();
-        btnOverDueHires.setStyle("-fx-background-color: #c0392b");
-        loadView("OverdueVehiclesView");
-    }
 
     private void clearSelectedButtonStyle(){
         btnViewCustomers.setStyle("-fx-background-color: #3498db");
         btnNewHire.setStyle("-fx-background-color: #3498db");
         btnViewHires.setStyle("-fx-background-color: #3498db");
         btnHandOver.setStyle("-fx-background-color: #3498db");
-        btnOverDueHires.setStyle("-fx-background-color: #3498db");
     }
 }

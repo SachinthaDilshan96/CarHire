@@ -19,6 +19,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class ReturnVehicleViewController {
@@ -73,13 +77,25 @@ public class ReturnVehicleViewController {
         txtCustomerName.setText(hireTm.getCustomer().getFirstName());
         txtHirePlacedBy.setText(hireTm.getOrderPlacedBy().getFirstName());
         txtFrom.setText(hireTm.getFromDate().toString());
+        if (hireTm.getToDate().before(Date.valueOf(LocalDate.now())) ) {
+            txtTo.setStyle("-fx-border-color: #e67e22;-fx-border-width: 2");
+            new Alert(Alert.AlertType.WARNING,"This is an overdue vehicle. Charge the delay fees.").show();
+            int days = (int) ChronoUnit.DAYS.between(hireTm.getFromDate().toLocalDate(),LocalDate.now());
+            double total = hireTm.getDailyRental()*days;
+            txtTotal.setText(Double.toString(total));
+            txtBalance.setText(Double.toString(hireTm.getBalance()-hireTm.getAdvance()));
+
+        }else {
+            txtTo.setStyle("-fx-border-width: 0");
+            txtTotal.setText(Double.toString(hireTm.getTotal()));
+            txtBalance.setText(Double.toString(hireTm.getBalance()));
+        }
         txtTo.setText(hireTm.getToDate().toString());
         txtISReturned.setText(hireTm.getIsReturned());
-        txtTotal.setText(Double.toString(hireTm.getTotal()));
         txtDailyRental.setText(Double.toString(hireTm.getDailyRental()));
         txtDeposit.setText(Double.toString(hireTm.getDeposit()));
         txtAdvance.setText(Double.toString(hireTm.getAdvance()));
-        txtBalance.setText(Double.toString(hireTm.getBalance()));
+
     }
 
     private void loadAllHires(){
